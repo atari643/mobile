@@ -1,0 +1,5 @@
+{
+  "name": "GPRS Masterclass",
+  "description": "Application éducative de niveau ingénieur sur le réseau GPRS (General Packet Radio Service), son architecture, ses protocoles et son fonctionnement.",
+  "requestFramePermissions": []
+}
