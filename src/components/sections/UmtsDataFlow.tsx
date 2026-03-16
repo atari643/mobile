@@ -6,7 +6,7 @@ const steps = [
   {
     id: 0,
     title: "1. Génération du Paquet (UE)",
-    desc: "L'application génère un paquet IP. Le protocole PDCP compresse l'en-tête (ex: ROHC) pour économiser la bande passante. RLC segmente les données, MAC gère les priorités, et la couche PHY applique le codage W-CDMA.",
+    desc: "L'application génère un paquet IP. PDCP (successeur de SNDCP) compresse séparément en-têtes (via ROHC de l'IETF) et données. RLC (fusion des couches RLC+LLC du GPRS) segmente et fiabilise. MAC gère les priorités, et la couche PHY applique le codage W-CDMA.",
     protocols: ["IP", "PDCP", "RLC", "MAC", "PHY (W-CDMA)"],
     node: "UE"
   },
@@ -79,7 +79,7 @@ export default function UmtsDataFlow() {
           <span className="flex h-2 w-2 rounded-full bg-blue-500"></span>
           Flux de Données
         </div>
-        <h2 className="text-4xl font-bold text-slate-900 tracking-tight">Flux de Données UMTS (Plan Utilisateur)</h2>
+        <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-slate-900 tracking-tight">Flux de Données UMTS (Plan Utilisateur)</h2>
         <p className="text-lg text-slate-600 mt-4 leading-relaxed">
           Découvrez comment un paquet IP voyage à travers l'architecture UMTS, de l'équipement utilisateur (UE) jusqu'à Internet, en observant les différentes encapsulations protocolaires.
         </p>
@@ -251,13 +251,13 @@ export default function UmtsDataFlow() {
           <div className="bg-white p-5 rounded-xl border border-slate-200">
             <h4 className="font-bold text-slate-800 mb-2 border-b border-slate-100 pb-2">Dans le GPRS</h4>
             <p className="text-sm text-slate-600">
-              La couche LLC (Logical Link Control) s'étendait de bout en bout entre le <strong>Mobile (MS)</strong> et le <strong>SGSN</strong>. Le BSS (BTS+BSC) n'était qu'un relais de niveau inférieur (Frame Relay / BSSGP). Le SGSN gérait donc la fiabilisation radio.
+              Les couches LLC et RLC étaient séparées : LLC s'étendait entre le <strong>MS</strong> et le <strong>SGSN</strong>, RLC entre le MS et le BSS. Le BSS utilisait du mode circuit entre BTS et BSC. Le choix du Frame Relay entre BSC et SGSN a été figé très tôt.
             </p>
           </div>
           <div className="bg-white p-5 rounded-xl border border-slate-200">
             <h4 className="font-bold text-indigo-800 mb-2 border-b border-slate-100 pb-2">Dans l'UMTS</h4>
             <p className="text-sm text-slate-600">
-              Les couches RLC et PDCP se terminent dans le <strong>RNC</strong>. Le RNC est beaucoup plus intelligent que le BSC : il gère la fiabilisation (ARQ) et la compression. Le SGSN est déchargé de ces tâches radio et ne gère plus que le tunnel GTP-U.
+              LLC et RLC du GPRS ont été <strong>fusionnées en une seule couche RLC</strong>. Cette couche, ainsi que PDCP, se terminent dans le <strong>RNC</strong>. Le tunnel GTP s'étend désormais du SGSN jusqu'au RNC (plus de Frame Relay). Le transport entre Node B et RNC utilise ATM/AAL-2 (puis IP).
             </p>
           </div>
         </div>

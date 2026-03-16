@@ -24,7 +24,7 @@ export default function LteArchitecture() {
     sgw: {
       title: "S-GW (Serving Gateway)",
       desc: "La passerelle de service du plan de données.",
-      details: "Elle sert de point d'ancrage local pour la mobilité intra-LTE (lors des handovers entre eNodeBs). Elle route et transfère les paquets de données utilisateur vers le P-GW."
+      details: "Elle sert de point d'ancrage local pour la mobilité intra-LTE (lors des handovers entre eNodeBs). Elle relaye les paquets de données utilisateur vers le P-GW via les tunnels GTP."
     },
     pgw: {
       title: "P-GW (PDN Gateway)",
@@ -75,9 +75,10 @@ export default function LteArchitecture() {
         </p>
       </header>
 
-      <div className="bg-slate-50 p-8 rounded-3xl border border-slate-200 shadow-sm overflow-hidden relative">
+      <div className="bg-slate-50 p-4 sm:p-8 rounded-3xl border border-slate-200 shadow-sm overflow-hidden relative">
         {/* Diagramme SVG Interactif */}
-        <div className="relative w-full aspect-[16/9] min-h-[500px] max-w-5xl mx-auto bg-white rounded-2xl border border-slate-200 shadow-inner p-4">
+        <div className="overflow-x-auto">
+        <div className="relative w-full aspect-[16/9] min-h-[500px] min-w-[700px] max-w-5xl mx-auto bg-white rounded-2xl border border-slate-200 shadow-inner p-4">
           
           {/* Zones de fond */}
           <div className="absolute top-4 bottom-4 left-4 w-[30%] bg-blue-50/50 rounded-xl border border-blue-100/50 flex flex-col items-center pt-2">
@@ -87,35 +88,35 @@ export default function LteArchitecture() {
             <span className="text-xs font-bold text-rose-400 uppercase tracking-widest">EPC (Cœur de Réseau)</span>
           </div>
 
-          <svg className="absolute inset-0 w-full h-full pointer-events-none" style={{ zIndex: 10 }}>
+          <svg className="absolute inset-0 w-full h-full pointer-events-none" style={{ zIndex: 10 }} viewBox="0 0 100 100" preserveAspectRatio="none">
             <defs>
-              <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
-                <polygon points="0 0, 10 3.5, 0 7" fill="#94a3b8" />
+              <marker id="arrowhead" markerUnits="userSpaceOnUse" markerWidth="5" markerHeight="3.5" refX="4.6" refY="1.75" orient="auto">
+                <polygon points="0 0, 5 1.75, 0 3.5" fill="#94a3b8" />
               </marker>
-              <marker id="arrowhead-data" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
-                <polygon points="0 0, 10 3.5, 0 7" fill="#3b82f6" />
+              <marker id="arrowhead-data" markerUnits="userSpaceOnUse" markerWidth="5" markerHeight="3.5" refX="4.6" refY="1.75" orient="auto">
+                <polygon points="0 0, 5 1.75, 0 3.5" fill="#3b82f6" />
               </marker>
-              <marker id="arrowhead-ctrl" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
-                <polygon points="0 0, 10 3.5, 0 7" fill="#f43f5e" />
+              <marker id="arrowhead-ctrl" markerUnits="userSpaceOnUse" markerWidth="5" markerHeight="3.5" refX="4.6" refY="1.75" orient="auto">
+                <polygon points="0 0, 5 1.75, 0 3.5" fill="#f43f5e" />
               </marker>
             </defs>
 
             {/* Lignes de données (Bleu) */}
-            <path d="M 13% 50% L 22% 50%" stroke="#3b82f6" strokeWidth="3" strokeDasharray="6,4" fill="none" markerEnd="url(#arrowhead-data)" className="transition-all duration-300" opacity={activeElement === 'lteuu' || !activeElement ? 1 : 0.2} />
-            <path d="M 28% 52% L 52% 68%" stroke="#3b82f6" strokeWidth="3" fill="none" markerEnd="url(#arrowhead-data)" className="transition-all duration-300" opacity={activeElement === 's1u' || !activeElement ? 1 : 0.2} />
-            <path d="M 28% 78% L 52% 72%" stroke="#3b82f6" strokeWidth="3" fill="none" markerEnd="url(#arrowhead-data)" className="transition-all duration-300" opacity={activeElement === 's1u' || !activeElement ? 1 : 0.2} />
-            <path d="M 58% 70% L 72% 70%" stroke="#3b82f6" strokeWidth="3" fill="none" markerEnd="url(#arrowhead-data)" className="transition-all duration-300" opacity={activeElement === 's5s8' || !activeElement ? 1 : 0.2} />
-            <path d="M 78% 70% L 87% 70%" stroke="#3b82f6" strokeWidth="3" fill="none" markerEnd="url(#arrowhead-data)" className="transition-all duration-300" opacity={activeElement === 'sgi' || !activeElement ? 1 : 0.2} />
+            <path d="M 13 50 L 22 50" stroke="#3b82f6" strokeWidth="3" strokeDasharray="6,4" fill="none" markerEnd="url(#arrowhead-data)" className="transition-all duration-300" opacity={activeElement === 'lteuu' || !activeElement ? 1 : 0.2} />
+            <path d="M 28 52 L 52 68" stroke="#3b82f6" strokeWidth="3" fill="none" markerEnd="url(#arrowhead-data)" className="transition-all duration-300" opacity={activeElement === 's1u' || !activeElement ? 1 : 0.2} />
+            <path d="M 28 78 L 52 72" stroke="#3b82f6" strokeWidth="3" fill="none" markerEnd="url(#arrowhead-data)" className="transition-all duration-300" opacity={activeElement === 's1u' || !activeElement ? 1 : 0.2} />
+            <path d="M 58 70 L 72 70" stroke="#3b82f6" strokeWidth="3" fill="none" markerEnd="url(#arrowhead-data)" className="transition-all duration-300" opacity={activeElement === 's5s8' || !activeElement ? 1 : 0.2} />
+            <path d="M 78 70 L 87 70" stroke="#3b82f6" strokeWidth="3" fill="none" markerEnd="url(#arrowhead-data)" className="transition-all duration-300" opacity={activeElement === 'sgi' || !activeElement ? 1 : 0.2} />
 
             {/* Lignes de contrôle (Rouge) */}
-            <path d="M 28% 48% L 52% 32%" stroke="#f43f5e" strokeWidth="2" strokeDasharray="4,4" fill="none" markerEnd="url(#arrowhead-ctrl)" className="transition-all duration-300" opacity={activeElement === 's1mme' || !activeElement ? 1 : 0.2} />
-            <path d="M 28% 75% L 52% 35%" stroke="#f43f5e" strokeWidth="2" strokeDasharray="4,4" fill="none" markerEnd="url(#arrowhead-ctrl)" className="transition-all duration-300" opacity={activeElement === 's1mme' || !activeElement ? 1 : 0.2} />
-            <path d="M 55% 36% L 55% 64%" stroke="#f43f5e" strokeWidth="2" strokeDasharray="4,4" fill="none" markerEnd="url(#arrowhead-ctrl)" className="transition-all duration-300" opacity={activeElement === 's11' || !activeElement ? 1 : 0.2} />
-            <path d="M 58% 28% L 72% 17%" stroke="#f43f5e" strokeWidth="2" strokeDasharray="4,4" fill="none" markerEnd="url(#arrowhead-ctrl)" className="transition-all duration-300" opacity={activeElement === 's6a' || !activeElement ? 1 : 0.2} />
-            <path d="M 75% 64% L 75% 51%" stroke="#f43f5e" strokeWidth="2" strokeDasharray="4,4" fill="none" markerEnd="url(#arrowhead-ctrl)" className="transition-all duration-300" opacity={activeElement === 'gx' || !activeElement ? 1 : 0.2} />
+            <path d="M 28 48 L 52 32" stroke="#f43f5e" strokeWidth="2" strokeDasharray="4,4" fill="none" markerEnd="url(#arrowhead-ctrl)" className="transition-all duration-300" opacity={activeElement === 's1mme' || !activeElement ? 1 : 0.2} />
+            <path d="M 28 75 L 52 35" stroke="#f43f5e" strokeWidth="2" strokeDasharray="4,4" fill="none" markerEnd="url(#arrowhead-ctrl)" className="transition-all duration-300" opacity={activeElement === 's1mme' || !activeElement ? 1 : 0.2} />
+            <path d="M 55 36 L 55 64" stroke="#f43f5e" strokeWidth="2" strokeDasharray="4,4" fill="none" markerEnd="url(#arrowhead-ctrl)" className="transition-all duration-300" opacity={activeElement === 's11' || !activeElement ? 1 : 0.2} />
+            <path d="M 58 28 L 72 17" stroke="#f43f5e" strokeWidth="2" strokeDasharray="4,4" fill="none" markerEnd="url(#arrowhead-ctrl)" className="transition-all duration-300" opacity={activeElement === 's6a' || !activeElement ? 1 : 0.2} />
+            <path d="M 75 64 L 75 51" stroke="#f43f5e" strokeWidth="2" strokeDasharray="4,4" fill="none" markerEnd="url(#arrowhead-ctrl)" className="transition-all duration-300" opacity={activeElement === 'gx' || !activeElement ? 1 : 0.2} />
 
             {/* X2 Interface */}
-            <path d="M 25% 56% L 25% 74%" stroke="#8b5cf6" strokeWidth="2" strokeDasharray="4,4" fill="none" className="transition-all duration-300" opacity={activeElement === 'x2' || !activeElement ? 1 : 0.2} />
+            <path d="M 25 56 L 25 74" stroke="#8b5cf6" strokeWidth="2" strokeDasharray="4,4" fill="none" className="transition-all duration-300" opacity={activeElement === 'x2' || !activeElement ? 1 : 0.2} />
 
           </svg>
 
@@ -267,6 +268,7 @@ export default function LteArchitecture() {
               onMouseLeave={() => setActiveElement(null)}
             >SGi</div>
           </div>
+        </div>
         </div>
 
         {/* Panneau d'information dynamique */}

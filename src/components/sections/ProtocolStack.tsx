@@ -60,7 +60,7 @@ export default function ProtocolStack({ onNext, onPrev, nextLabel, prevLabel }: 
           <Activity size={16} />
           Piles Protocolaires GPRS
         </div>
-        <h2 className="text-4xl font-bold text-slate-900 tracking-tight">Architecture des Protocoles</h2>
+        <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-slate-900 tracking-tight">Architecture des Protocoles</h2>
         <p className="text-lg text-slate-600 mt-4 leading-relaxed">
           L'architecture GPRS sépare le <strong>Plan de Transmission (User Plane)</strong> du <strong>Plan de Contrôle</strong>. Voici la pile du plan utilisateur, montrant comment les données utilisateur transitent du mobile vers Internet.
         </p>
@@ -272,7 +272,7 @@ export default function ProtocolStack({ onNext, onPrev, nextLabel, prevLabel }: 
             SNDCP
           </h3>
           <p className="text-sm text-slate-600 leading-relaxed">
-            Subnetwork Dependent Convergence Protocol. Il multiplexe les PDUs venant de plusieurs réseaux (IP, X.25) sur une seule connexion LLC. Il compresse séparément les en-têtes (TCP/IP) et les données (V.42bis) pour optimiser la bande passante.
+            Subnetwork Dependent Convergence Protocol. Il compresse séparément les en-têtes et les données via 2 algorithmes distincts. La compression d'en-têtes est la plus efficace car les différences d'un paquet IP (ou X.25) à l'autre sont faibles. Le protocole indique quels algorithmes de compression sont utilisés.
           </p>
         </div>
 

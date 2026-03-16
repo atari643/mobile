@@ -12,7 +12,7 @@ export default function Architecture({ onNext, onPrev, nextLabel, prevLabel }: {
     bts: { title: "BTS (Base Transceiver Station)", desc: "L'antenne relais qui communique avec le mobile via l'interface radio Um." },
     bsc: { title: "BSC (Base Station Controller)", desc: "Contrôle plusieurs BTS. Gère l'allocation des ressources radio." },
     pcu: { title: "PCU (Packet Control Unit)", desc: "Ajout matériel/logiciel au BSC pour séparer le trafic paquet (GPRS) du trafic circuit (GSM)." },
-    sgsn: { title: "SGSN (Serving GPRS Support Node)", desc: "Gère la mobilité, l'authentification et le routage des paquets dans sa zone." },
+    sgsn: { title: "SGSN (Serving GPRS Support Node)", desc: "Gère la mobilité, l'authentification (via la VLR) et le relais des paquets vers le GGSN via les tunnels GTP. Le SGSN relaye mais ne route pas." },
     ggsn: { title: "GGSN (Gateway GPRS Support Node)", desc: "Passerelle vers les réseaux IP externes (Internet). Attribue les adresses IP." },
     hlr: { title: "HLR (Home Location Register)", desc: "Base de données centrale contenant les profils des abonnés." },
     bg: { title: "BG (Border Gateway)", desc: "Passerelle sécurisée pour l'itinérance (roaming) entre opérateurs." }
@@ -24,7 +24,7 @@ export default function Architecture({ onNext, onPrev, nextLabel, prevLabel }: {
     gb: { title: "Interface Gb", desc: "Lien (souvent Frame Relay) entre le PCU et le SGSN." },
     gn: { title: "Interface Gn", desc: "Réseau IP interne transportant les tunnels GTP entre SGSN et GGSN." },
     gi: { title: "Interface Gi", desc: "Point de sortie vers les réseaux IP externes (Internet)." },
-    gr: { title: "Interface Gr", desc: "Lien entre le SGSN et le HLR pour l'authentification." },
+    gr: { title: "Interface Gr", desc: "Lien entre le SGSN et le HLR pour la mise à jour de la localisation de l'abonné." },
     gc: { title: "Interface Gc", desc: "Lien entre le GGSN et le HLR." }
   };
 
@@ -40,15 +40,16 @@ export default function Architecture({ onNext, onPrev, nextLabel, prevLabel }: {
           <span className="flex h-2 w-2 rounded-full bg-emerald-500"></span>
           Architecture 2.5G
         </div>
-        <h2 className="text-4xl font-bold text-slate-900 tracking-tight">Architecture Réseau GPRS</h2>
+        <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-slate-900 tracking-tight">Architecture Réseau GPRS</h2>
         <p className="text-lg text-slate-600 mt-4 leading-relaxed">
           Le réseau GPRS introduit de nouveaux équipements dans le cœur de réseau (Core Network) pour gérer la commutation de paquets, tout en réutilisant le réseau d'accès radio (BSS) du GSM.
         </p>
       </header>
 
       {/* Architecture Diagram */}
-      <div className="bg-slate-50 p-8 rounded-3xl shadow-sm border border-slate-200 overflow-hidden relative">
-        <div className="relative w-full aspect-[16/9] min-h-[500px] max-w-5xl mx-auto bg-white rounded-2xl border border-slate-200 shadow-inner p-4">
+      <div className="bg-slate-50 p-4 sm:p-8 rounded-3xl shadow-sm border border-slate-200 overflow-hidden relative">
+        <div className="overflow-x-auto">
+        <div className="relative w-full aspect-[16/9] min-h-[500px] min-w-[700px] max-w-5xl mx-auto bg-white rounded-2xl border border-slate-200 shadow-inner p-4">
           
           {/* Background Areas */}
           <div className="absolute top-4 bottom-4 left-[15%] w-[25%] bg-blue-50/50 rounded-xl border border-blue-100/50 flex flex-col items-center pt-2">
@@ -58,29 +59,29 @@ export default function Architecture({ onNext, onPrev, nextLabel, prevLabel }: {
             <span className="text-xs font-bold text-emerald-500 uppercase tracking-widest">GPRS Core Network</span>
           </div>
 
-          <svg className="absolute inset-0 w-full h-full pointer-events-none" style={{ zIndex: 10 }}>
+          <svg className="absolute inset-0 w-full h-full pointer-events-none" style={{ zIndex: 10 }} viewBox="0 0 100 100" preserveAspectRatio="none">
             <defs>
-              <marker id="arrowhead-gprs" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
-                <polygon points="0 0, 10 3.5, 0 7" fill="#10b981" />
+              <marker id="arrowhead-gprs" markerUnits="userSpaceOnUse" markerWidth="5" markerHeight="3.5" refX="4.6" refY="1.75" orient="auto">
+                <polygon points="0 0, 5 1.75, 0 3.5" fill="#10b981" />
               </marker>
-              <marker id="arrowhead-radio" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
-                <polygon points="0 0, 10 3.5, 0 7" fill="#3b82f6" />
+              <marker id="arrowhead-radio" markerUnits="userSpaceOnUse" markerWidth="5" markerHeight="3.5" refX="4.6" refY="1.75" orient="auto">
+                <polygon points="0 0, 5 1.75, 0 3.5" fill="#3b82f6" />
               </marker>
             </defs>
 
             {/* Lines */}
-            <path d="M 13% 50% L 17% 50%" stroke="#3b82f6" strokeWidth="3" strokeDasharray="6,4" fill="none" className="transition-all duration-300" opacity={activeElement === 'um' || !activeElement ? 1 : 0.2} />
-            <path d="M 23% 50% L 32% 50%" stroke="#3b82f6" strokeWidth="3" fill="none" className="transition-all duration-300" opacity={activeElement === 'abis' || !activeElement ? 1 : 0.2} />
-            <path d="M 38% 50% L 52% 50%" stroke="#10b981" strokeWidth="3" fill="none" markerEnd="url(#arrowhead-gprs)" className="transition-all duration-300" opacity={activeElement === 'gb' || !activeElement ? 1 : 0.2} />
-            <path d="M 58% 50% L 72% 50%" stroke="#10b981" strokeWidth="4" fill="none" markerEnd="url(#arrowhead-gprs)" className="transition-all duration-300" opacity={activeElement === 'gn' || !activeElement ? 1 : 0.2} />
-            <path d="M 78% 50% L 87% 50%" stroke="#f97316" strokeWidth="3" fill="none" markerEnd="url(#arrowhead-gprs)" className="transition-all duration-300" opacity={activeElement === 'gi' || !activeElement ? 1 : 0.2} />
+            <path d="M 13 50 L 17 50" stroke="#3b82f6" strokeWidth="3" strokeDasharray="6,4" fill="none" className="transition-all duration-300" opacity={activeElement === 'um' || !activeElement ? 1 : 0.2} />
+            <path d="M 23 50 L 32 50" stroke="#3b82f6" strokeWidth="3" fill="none" className="transition-all duration-300" opacity={activeElement === 'abis' || !activeElement ? 1 : 0.2} />
+            <path d="M 38 50 L 52 50" stroke="#10b981" strokeWidth="3" fill="none" markerEnd="url(#arrowhead-gprs)" className="transition-all duration-300" opacity={activeElement === 'gb' || !activeElement ? 1 : 0.2} />
+            <path d="M 58 50 L 72 50" stroke="#10b981" strokeWidth="4" fill="none" markerEnd="url(#arrowhead-gprs)" className="transition-all duration-300" opacity={activeElement === 'gn' || !activeElement ? 1 : 0.2} />
+            <path d="M 78 50 L 87 50" stroke="#f97316" strokeWidth="3" fill="none" markerEnd="url(#arrowhead-gprs)" className="transition-all duration-300" opacity={activeElement === 'gi' || !activeElement ? 1 : 0.2} />
             
             {/* HLR Lines */}
-            <path d="M 55% 44% Q 55% 20% 62% 20%" stroke="#a855f7" strokeWidth="2" strokeDasharray="4,4" fill="none" className="transition-all duration-300" opacity={activeElement === 'gr' || !activeElement ? 1 : 0.2} />
-            <path d="M 75% 44% Q 75% 20% 68% 20%" stroke="#a855f7" strokeWidth="2" strokeDasharray="4,4" fill="none" className="transition-all duration-300" opacity={activeElement === 'gc' || !activeElement ? 1 : 0.2} />
+            <path d="M 55 44 Q 55 20 62 20" stroke="#a855f7" strokeWidth="2" strokeDasharray="4,4" fill="none" className="transition-all duration-300" opacity={activeElement === 'gr' || !activeElement ? 1 : 0.2} />
+            <path d="M 75 44 Q 75 20 68 20" stroke="#a855f7" strokeWidth="2" strokeDasharray="4,4" fill="none" className="transition-all duration-300" opacity={activeElement === 'gc' || !activeElement ? 1 : 0.2} />
             
             {/* BG Line */}
-            <path d="M 65% 50% L 65% 72%" stroke="#64748b" strokeWidth="2" strokeDasharray="4,4" fill="none" className="transition-all duration-300" opacity={activeElement === 'bg' || !activeElement ? 1 : 0.2} />
+            <path d="M 65 50 L 65 72" stroke="#64748b" strokeWidth="2" strokeDasharray="4,4" fill="none" className="transition-all duration-300" opacity={activeElement === 'bg' || !activeElement ? 1 : 0.2} />
           </svg>
 
           {/* Nodes */}
@@ -221,6 +222,7 @@ export default function Architecture({ onNext, onPrev, nextLabel, prevLabel }: {
             >Gc</div>
           </div>
         </div>
+        </div>
 
         {/* Info Panel */}
         <div className="mt-8 bg-white p-6 rounded-2xl border border-slate-200 shadow-sm min-h-[140px]">
@@ -267,8 +269,8 @@ export default function Architecture({ onNext, onPrev, nextLabel, prevLabel }: {
           <h3 className="text-lg font-bold text-emerald-700 mb-3 border-b border-slate-100 pb-2">SGSN (Serving GPRS Support Node)</h3>
           <ul className="space-y-2 text-sm text-slate-600">
             <li className="flex items-start gap-2"><span className="text-emerald-500 mt-0.5">•</span> Gère la mobilité (Routing Area Updates) des MS dans sa zone.</li>
-            <li className="flex items-start gap-2"><span className="text-emerald-500 mt-0.5">•</span> Authentification et chiffrement (via le HLR).</li>
-            <li className="flex items-start gap-2"><span className="text-emerald-500 mt-0.5">•</span> Routage et transfert des paquets de données.</li>
+            <li className="flex items-start gap-2"><span className="text-emerald-500 mt-0.5">•</span> Authentification et chiffrement (via la VLR). Mise à jour de localisation vers le HLR.</li>
+            <li className="flex items-start gap-2"><span className="text-emerald-500 mt-0.5">•</span> Relais des paquets de données vers le GGSN via les tunnels GTP (le SGSN ne route pas).</li>
             <li className="flex items-start gap-2"><span className="text-emerald-500 mt-0.5">•</span> Gestion des contextes PDP (Packet Data Protocol).</li>
           </ul>
         </div>

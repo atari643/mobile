@@ -1,0 +1,376 @@
+NOTES SUR LE COURS LTE – André-Luc Beylot
+Diapo 1 :
+La dernière partie du cours de réseaux mobiles de deuxième année se termine par la
+description du standard LTE – Long Term Evolution. La dénomination est assez cocasse
+dans la mesure où le long terme indiqué dans la terminologie est sensiblement du même
+ordre de grandeur que les générations précédentes : la durée entre deux générations est
+de 10 ans. En toute rigueur LTE n’aurait pas du prétendre à la terminologie 4G qui selon
+l’ITU devait consacrer l’apparition des débits maximaux à 1 Gbit/s en voie descendante,
+ce qui n’est pas le cas et aurait dû s’appeler 3,9G… ce qui n’était pas commercialement
+très porteur.
+C’est le 3GPP qui a poursuivi son travail de standardisation allant donc au-delà de ce que
+le nom du projet laisse à penser.
+DIAPO 2 :
+On commencera par décrire les motivations qui ont poussé à la création de cette
+nouvelle génération de réseaux mobiles.
+L’évolution majeure de la 3G provenait de la fusion du réseau d’accès pour atteindre le
+Réseau Téléphonique Commuté et le Réseaux de Transmission de données, en une
+solution unique fonctionnant en mode paquet et garantissant une qualité de service
+différenciée. En revanche, il y avait eu un impact marginal sur les coeurs de réseaux (les
+opérateurs cherchant à rentabiliser leur réseau de collecte déployé pour le GPRS).
+Les évolutions pour la 4G sont beaucoup plus radicales car on va à la fois repenser et
+simplifier énormément le réseau d’accès en supprimant le raccordement vers le réseau
+téléphonique commuté d’une part et d’autre part, reprendre aussi la conception du
+réseau de collecte.
+L’interconnexion avec les autres types de réseaux a aussi été formalisée de façon plus
+précise que ce soit avec les générations antérieures mais aussi avec les autres types de
+réseaux. Attention, ici le débat n’est pas clos et il est encore complètement d’actualité
+dans le contexte de la 5G.
+On terminera par quelques évolutions apparues après la création des premiers
+standards 4G. Les évolutions de la 4G et la 5G seront présentées dans les cours de 3ème
+année, parcours TSFOC et IBDIOT (tout n’est pas encore stabilisé). Les travaux
+commencent pour la 6G (avec des retards probables en raison par exemple des
+problèmes de souveraineté).
+DIAPO 3 :
+Alors que le démarrage de la 3G a été un peu lent, son succès a été largement au rendezvous
+à partir de la 3G+. Mais, alors qu’en 3G, la partie radio avait du mal à monter en
+puissance en raison des canaux dédiés dans le sens descendant, avec l’apparition de la
+3G+, l’accès a été assez rapidement saturé, mais c’est même l’intégralité du réseau
+d’accès qui a commencé à saturer. Il s’agit à la fois d’un problème de débit des liens mais
+aussi de complexité des architectures protocolaires. La solution ATM/AAL2 est
+extrêmement brillante pour traiter la qualité de service différenciée, par exemple, mais
+elle est lourde en signalisation et en complexité des équipements. Son pendant dans le
+monde IP conduit à une réduction des coûts des équipements mais elle est globalement
+moins satisfaisante (en restant lourde).
+La menace WIMAX ayant toutefois été écartée, le monde télécoms a pu réfléchir plus
+sereinement à de vraies évolutions pour permettre l’augmentation des nombres de
+terminaux et des débits associés.
+Attention, chaque génération promet des augmentations des débits mais il faut
+comparer l’évolution des capacités offertes et des débits demandés ! La meilleure
+solution consiste tout de même à augmenter le nombre de stations de base et à réduire
+la puissance d’émission pour augmenter la capacité !
+Les caractéristiques essentielles vont être tout de même une réelle simplification des
+architectures « systèmes » (les équipements) et protocolaires. Là le résultat est
+impressionnant. La volonté a aussi été de s’intéresser de plus près à l’interconnexion des
+réseaux – une façon d’avaler la concurrence (accès 3GPP et non 3GPP) !
+DIAPO 4 :
+Les travaux préparatoires ont commencé dès 2004 avec une première réunion du 3GPP
+à Toronto. La localisation géographique n’est pas du tout anodine. Cela manifeste
+l’ouverture du 3GPP au continent nord-américain. Peu de temps après, le 3GPP2 a
+commencé des travaux similaires pour les évolutions du CDMA-2000 (et de ses
+évolutions). Assez rapidement, le 3GPP2 a jeté l’éponge.
+Enfin, le LTE est un standard réellement mondial.
+Ces premiers travaux ont porté sur l’accès radio et sur l’architecture du réseau d’accès
+radio. La terminologie est assez inspirée de celle de la 3G en ajoutant la lettre E comme
+Evolved. La deuxième partie des travaux a porté sur les services et sur l’évolution du
+coeur de réseau.
+Après cette phase de travaux de standardisation, les équipementiers et les opérateurs
+ont fait les tests pour un déploiement à partir de 2010.
+DIAPO 5 :
+Les évolutions sont assez sensibles. En premier lieu, on enlève le raccordement vers le
+réseau téléphonique commuté. La voix ne sera plus envoyée vers le réseau téléphonique
+commuté et sera prise en charge uniquement au travers d’un service de voix sur IP. Dans
+les systèmes 3G, deux services de voix étaient proposés : la voix classique et la
+signalisation associée, qui était envoyées vers le réseau téléphonique commuté (3GMSC),
+et la voix sur IP et la signalisation associée à envoyer vers le réseau Internet (3GGGSN).
+Attention, cela ne préjugeait pas de la façon avec laquelle ces flux (strate
+applicative) étaient pris en charge sur les différentes interfaces du réseau d’accès. Ils
+pouvaient aussi bien passer par une pile ATM/AAL2 que par une pile UDP/IP.
+Attention, les standards de Voix sur LTE (VoLTE) ne sont apparus que plus tard, en
+particulier en termes d’équipements, de terminaux, de protocoles et de mécanismes et
+donc dans un premier temps, la voix a été rebasculée automatiquement sur les réseaux
+2G/3G sous-jacents (en particulier les réseaux 2G moins chargés). On y reviendra en TD.
+Les débits crêtes sont largement améliorés par rapport à la 3G (100 Mbit/s dans le sens
+descendant et 50 Mbit/s dans le sens montant) avec des débits qui augmentent encore
+avec les évolutions (cf. fin du cours).
+Les délais sont également réduits à la fois dans le plan de contrôle pour établir/rétablir
+les « tuyaux » radio et dans le plan de données. Pour réduire ces délais, il était
+absolument nécessaire de simplifier les architectures protocolaires !
+Sur la partie couche physique de l’interface radio, on a considéré des systèmes avec des
+largeurs de canaux flexibles et une amélioration de l’efficacité spectrale (ordres de
+modulation supérieurs, nouvelle façon de partager le support).
+L’autre amélioration majeure a été une rationalisation/simplification de la conception
+des interfaces. La généralisation de l’IP se matérialise à la fois dans le plan de données
+avec une pile de protocoles unifiée mais aussi dans la définition de ces interfaces qui
+sont sur IP (attention, on aura bien encore des tunnels IP et de l’encapsulation d’IP dans
+IP cf. TD 2). Il n’y a plus qu’un « réseau coeur » en IP qui transporte des paquets IP entre
+une passerelle d’entrée et une passerelle vers l’Internet.
+L’interopérabilité a été prévue dès la conception que ce soit la compatibilité avec les
+autres réseaux 3GPP mais aussi avec tous les autres types de réseaux d’accès.
+ATTENTION, si tout le reste est effectivement beaucoup plus simple qu’en 3G. Là, il y a
+de la complexité !
+DIAPO 6 :
+Comme pour l’UMTS (et ATM par exemple) et la 5G, le premier travail produit par le
+3GPP a été de se poser la question des services à proposer sur ces réseaux LTE. Les
+applications visées ne sont pas foncièrement nouvelles par rapport à la 3G, mais à
+chaque fois, les débits étant supérieurs, on peut envisager des versions améliorées (en
+débit en particulier).
+DIAPO 7 :
+Si l’on regarde l’architecture système, cette fois-ci il y a de réelles évolutions ! Le schéma
+de gauche correspond aux solutions GPRS/UMTS/CDMA2000. Ces dernières n’ont pas
+été détaillées en cours. Les équipements ont des noms différents mais
+fonctionnellement, on trouve un peu la même chose.
+Si l’on regarde la figure de droite, on se rend compte en premier lieu que la station de
+base et le contrôleur de station de base ont été fusionnés en un seul équipement intitulé
+e-NodeB (attention, c’est donc la version améliorée de la station de base UMTS). Cet
+apport est majeur parce qu’une très grande majorité de la complexité de l’UMTS
+provenait justement de l’interface entre les deux équipements, du découpage
+fonctionnelle et des délais induits par les traitements et le passage de l’interface.
+La deuxième information majeure est la rationalisation des passerelles vers le réseau de
+collecte de l’opérateur mobile : Serving Gateway en entrée et Packet Data Network
+gateway (PDN Gateway) en sortie. Pas de distinction fondamentale entre passerelle
+d’entrée et de sortie. Attention, ces deux équipements existent bien (tout petit nombre
+de passerelles vers l’Internet).
+Enfin, on voit apparaître une passerelle dans le plan de contrôle intitulée MME (Mobile
+Management Entity) située fonctionnellement entre la station de base et la Serving
+Gateway. Elle s’occupera de la gestion de la mobilité.
+DIAPO 8 :
+Sur ce schéma apparaît le réseau vu d’un terminal. Il peut se raccorder au réseau d’accès
+LTE, UTRAN ou GERAN ; l’UTRAN et le GERAN aboutisse au même réseau de collecte
+alors que le réseau d’accès LTE aboutit à un nouveau réseau de collecte intitulé Evolved
+Packet Core. IMS qui est apparu avec la 3G (avec de nombreuses volte-face des
+opérateurs quant à son déploiement) est devenu nécessaire avec la 4G. C’est une vision
+unifiée des services, on propose à l’utilisateur les mêmes services quel que soit son
+abonnement et son réseau d’accès (mobile ou sans fil) -> cours de Julien Fasson en 3ème
+année.
+Les interfaces du réseau LTE ont toutes changé de nom : LTE-Uu, interface S1 (en
+remplacement des Iu-PS). Les équipements du réseau de collecte ont également changé
+de nom : HSS (Home Subscriber Server) en remplacement de HLR – (incluant Diameter
+pour l’authentification, IMS pour les services). On note aussi l’interface entre la MME et
+le SGSN pour gérer la mobilité entre les différents mondes.
+Les accès au réseau EPC peuvent se faire aussi au travers d’interfaces radio
+différentes que l’on classe en Trusted et Untrusted. Les solutions Trusted recouvriront
+les réseaux d’accès non-3GPP opérés – 3GPP2 (CDMA2000) ou IEEE (WiMax) ; les
+Untrusted correspondent essentiellement au WiFI. Pour ces derniers, une passerelle
+spécifique doit être mise en place en particulier pour des raisons de sécurité.
+DIAPO 9 :
+Et voilà le diable est dans les détails. Autant les architectures fonctionnelles, système et
+protocolaires sont beaucoup plus simples si l’on regarde uniquement le réseau LTE mais
+si l’on regarde maintenant toute la diversité des accès à l’EPC, on a une grande diversité
+et pour chacun de très nombreuses entités à gérer : pour la mobilité, cela devient plus
+compliqué par exemple car les entités qui donnent les adresses IP par exemple ne sont
+pas les mêmes ; il faut alors prévoir des solutions. Elles reposent (enfin) sur la mobilité
+du monde IP au travers des solutions de type Mobile IP (avec des proxy, PMIPv6 est un
+des candidats). Cela sera vu en 3A. Ces solutions ressemblent dans leur principe à la
+gestion du nomadisme que l’on a vu dans ce cours : adresse temporaire, redirection,
+tunneling (quelques améliorations dans les redirections avec IPv6).
+On voit apparaître de nombreuses interfaces dans le plan de données et dans le plan de
+contrôle ; cela permet de gérer la mobilité, le nomadisme, l’authentification…
+DIAPO 10 :
+Voici l’architecture protocolaire du LTE. Comme on le voit l’architecture est nettement
+plus simple car elle tient sur une seule diapo. Comme on peut le constater, la
+rationalisation apparaît nettement. Les applications passent toutes par IP (plus de
+raccordement sur la couche RLC pour la parole téléphonique) ; il n’y a plus qu’une
+interface entre stations de base (e-NodeB) et Serving GW : elle passe sur IP dans des
+tunnels GTP (sur UDP).
+Là où il y a le moins de modifications, c’est justement sur cette interface (dans le plan de
+données qui s’apparente à ce que l’on a vu dans l’UMTS).
+Ce qui ne change pas, ce sont les deux tunnels GTP : l’un entre la Serving Gateway et la
+PDN Gateway et de la même façon entre l’e-NodeB et la Serving Gateway. Cela permet de
+gérer la mobilité (pas de changement d’adresse en cours de route tant qu’on reste dans
+un réseau 3GPP et en particulier LTE ; faire suivre les données dans ces périodes).
+Sur l’interface radio, on constate que les (noms des) protocoles n’ont pas changé. D’un
+point de vue pile de protocole, on retrouve la couche RLC (contrôle de la liaison radio) et
+la couche MAC (Medium Access Control) et la couche PHY. Ces couches sont communes
+au plan de données et au plan de contrôle. La couche PDCP qui sert à faire de la
+compression est présente dans le plan de données. Elle est aussi adoptée dans le plan de
+contrôle. La couche RRC gérera l’ensemble du réseau d’accès dans le plan de contrôle. La
+localisation des fonctions ne pose plus de problème car on a fusionné la station de base
+et le contrôleur de station de base.
+Le débat semblait donc clos pour la localisation des fonctions avec le LTE… Cela n’a duré
+que quelques courtes années car, comme on le verra l’an prochain, la mise en place des
+techniques de virtualisation dans le domaine des réseaux va reposer complètement le
+problème (pour toutes les couches y compris les plus basses – attention pour les
+étudiants du parcours T, la couche physique peut elle-même être délocalisée enfin une
+partie de ses fonctions !).
+Pour le plan de contrôle enfin, on voit apparaître la couche NAS (Non Access Stratum)
+qui gère la mobilité, la sécurité et les sessions (rattachement, détachement, mise à jour
+de la localisation, établissement des tuyaux radio). La couche S1AP sert à la fois à
+transporter les messages NAS mais aussi à échanger des messages de gestion, les
+contextes utilisateurs, des fonctions liées à la mobilité. Le protocole de transport utilisé
+est SCTP (Streaming Control Transport Protocol). Ce protocole a été créé par le groupe
+de travail de l’IETF SigTran pour s’occuper de la signalisation. La philosophie générale
+est liée aux spécificités de la signalisation telles qu’on les a déjà décrites lors de la
+présentation du réseau sémaphore. Pour gérer une communication, on a besoin d’un
+petit nombre de messages de signalisation. On avait choisi un réseau orienté messages.
+C’est donc le cas ici encore. Il est fiable et met en place du contrôle de congestion (à la
+mode TCP) mais orienté message comme UDP (pas flot d’octets comme TCP).
+DIAPO 11 : COUCHE PHY
+Les modifications de la couche PHY sont extrêmement sensibles.
+La bande passante est adaptable.
+Cela peut se faire en mode TDD (on alterne sens montant et descendant) et FDD (où l’on
+sépare les fréquences montantes et descendantes). Ordres de modulation plus élevés
+qu’en 3G.
+DIAPO 12 : COUCHE PHY
+Ordres de modulation plus élevés.
+Abandon du CDMA et retour du découpage temporel/fréquentiel. Dans le sens
+descendant OFDMA (Orthogonal Frequency Division Multiple Access) et dans le sens
+montant SC-FDMA (Single Carrier Frequency Division Multiple Access) cf. cours de
+Benoît Escrig pour les mérites comparés.
+DIAPO 13 :
+Si on regarde maintenant la pile protocolaire dans son intégralité.
+Tout passe par PDCP (plan de données et de contrôle) qui comprime les en-têtes et
+chiffre ; la couche RLC peut faire de la segmentation et de la concaténation ; la couche
+MAC fera le multiplexage des différents flux avec éventuellement du bourrage pour
+s’aligner sur la taille du bloc de transport. La couche PHY ajoute un code d’erreur, fait de
+l’entrelacement et le codage canal.
+DIAPO 14 et 15 :
+Les nombres de canaux de transport sont largement réduits par rapport à la 3G. Dans le
+sens descendant : Broadcast (info système), Données (partagés), Multicast, Paging. Dans
+le sens montant : Données (partagées) et Accès aléatoire. L’abandon du CDMA a permis
+de partager aussi les canaux de données dans le sens montant. Ce partage va donc plus
+loin que celui du GPRS (canaux partagés dans les deux sens entre un petit nombre de
+flux), du HSPA (partage complet dans le sens descendant pas dans le sens montant).
+Attention, cela n’enlève pas bien au contraire l’algorithmique du partage des ressources
+ni dans le sens montant, ni dans le sens descendant.
+La réduction des nombres de canaux de transport se matérialise sur la diapo 15. Les
+canaux logiques sont toujours aussi nombreux (peu d’évolutions depuis les systèmes
+2G) mais le partage des ressources est beaucoup plus net.
+DIAPO 16 :
+L’allocation des ressources est bien sûr l’enjeu majeur de ces réseaux d’accès sur la
+partie radio. Le partage se doit d’être dynamique. Il est bien sûr nécessaire encore une
+fois de distinguer le sens montant du sens descendant. Le standard fait clairement
+apparaître la mise en place d’une technique d’ordonnancement cross-layer : il est
+nécessaire de prendre en compte plusieurs paramètres pour effectuer un
+ordonnancement efficace : qualité de service des flux, qualité du support, équité. On
+retombe sur les mêmes principes que ce que l’on avait évoqué dans le contexte de
+HSDPA mais cette fois le problème se pose à la fois dans le sens montant et descendant.
+Favoriser les utilisateurs dans les meilleures conditions de transmission va permettre
+d’optimiser l’efficacité spectrale ; favoriser l’équité entre les utilisateurs c’est le
+contraire. Ne pas tenir compte de la qualité de service peut compromettre certains flux.
+Dans le sens descendant, on déroule donc un algorithme d’ordonnancement permettant
+de faire le pavage OFDMA.
+Dans le sens montant, les utilisateurs vont remonter l’état de leurs buffers d’émission. La
+station de base va de nouveau dérouler un algorithme d’ordonnancement pour définir le
+partage SC-FDMA du sens montant sur des critères du même type. Deux choix
+subsistent : effectuer l’allocation à la granularité du flux ou de l’utilisateur. A la
+granularité du flux, il s’agit d’une optimisation globale ; à la granularité de l’utilisateur,
+on alloue des ressources à l’utilisateur et ce dernier devra dérouler un algorithme
+d’ordonnancement pour décider les flux qu’il servira. C’est cette deuxième solution qui a
+été retenue car donnant lieu à des algorithmes plus simples.
+DIAPO 17 et 18 : HARQ et ARQ
+Les mécanismes HARQ, déjà vus en 3G sont de nouveau présents en LTE. Au niveau PHY,
+le codage permet la mise en oeuvre de mécanisme FEC. S’ils ne suffisent pas, la couche
+MAC implante HARQ sous forme d’un « send and wait » avec plusieurs retransmissions
+possibles. En cas d’échec, on remonte le problème au niveau RLC et son mécanisme ARQ
+classique (fenêtre coulissante). Notons cette fois tout de même que comme la couche
+RLC est sur l’e-NodeB, ces retransmissions de niveau RLC sont moins lentes car on n’a
+pas à retraverser le lien entre station de base et contrôleur de station de base.
+DIAPO 19 : Analyse de l’overhead
+Dans cette diapo, on compare les coûts en termes de surcharge protocolaire induits par
+le passage par la pile LTE dans les cas : segment de données TCP, segment de contrôle
+TCP (ACK) et datagramme UDP pour de la voix sur IP. Pour cette dernière, un Codec
+typique a été pris avec des tailles de messages de 33 octets. Le compression d’en-tête est
+très efficace – comme déjà noté depuis la 3G avec l’apparition de ROHC.
+Proportionnellement, ce sera plus intéressant pour les accusés de réception TCP ou les
+messages de voix.
+RLC propose encore une fois deux modes de fonctionnement avec et sans accusés de
+réception. Pour TCP, on prend la variante avec et pour UDP la variante sans.
+Les taux de compression globaux sont bien sûr les plus favorables pour les accusés de
+réception TCP (que de l’en-tête) même si le surcoût RLC est plus fort que pour la VoIP.
+DIAPO 20 :
+La gestion de la mobilité a été largement rationnalisée dans le contexte LTE. Le
+handover est piloté par l’entité MME qui est dans le plan de contrôle et
+fonctionnellement dans l’EPC (Evolved Packet Core). L’interface S1 est divisée en 2 :
+dans le plan de données – dialogue entre la station de base et la serving Gateway et dans
+le plan de contrôle entre la station de base et la MME. Les interfaces entre MME
+permettent le pilotage des handovers avec changements de serving Gateway, de la
+même façon les interfaces S5 et S8 sont utilisées dans ce cas-là.
+L’interface X2 (plan de données, plan de contrôle) permet le changement de station de
+base (cela correspond à un lien physique – ou au moins logique dans le réseau ; déjà
+présent en 3G, cela permet d’accélérer le handover). L’interface S11 permet les échanges
+entre MME et Serving Gateway.
+DIAPO 21 :
+Comme toujours dans le domaine des réseaux mobiles, le handover est piloté par le
+réseau. C’est l’eNode-B qui prend les décisions de handover. Le choix de la nouvelle
+station de base donne comme toujours lieu à des algorithmes non normalisés (des
+indications sont toutefois données dans le standard sur les différences entre les niveaux
+de puissance et les durées sur lesquelles ces différences sont observées).
+On revient à du hard handover (break before make). Les principes sont ceux que l’on
+avait observé depuis le GPRS lors des changements de SGSN (ou UMTS avec changement
+de contrôleur de station de base). Il y a des tunnels GTP entre la Serving Gateway et l’
+eNode-B. On fait suivre le contexte, on purge les tunnels et on fait suivre ; on met en
+place le nouveau tunnel. Délai faible nécessaire (trafic contraint temporellement et
+break before make).
+DIAPO 22 :
+Le diagramme de séquence présenté montre les différentes phases. Remontées de
+mesure, prise de décision, on prévient le nouvel e-NodeB, on prévient l’utilisateur ; on
+fait suivre les données, on bascule. Attention, cette philosophie est celle simple des
+handovers à l’intérieur d’un réseau LTE. Les procédures ont été aussi définies pour le
+cas de handover diagonal (entre systèmes 3GPP) et vertical (entre un système 3GPP et
+un système non 3GPP). Attention, par exemple, ce que l’on appelle « handover » dans le
+WiFi n’implique pas la reprise des données échangées dans les phases de handover (il
+s’agit de se désassocier et de se réassocier même à l’intérieur d’un même Extended
+Service Set).
+DIAPO 23 :
+La qualité de service dans le contexte LTE a été pensée de façon plus pragmatique qu’en
+UMTS. La crainte absolue des opérateurs dans le contexte de la 3G était de ne pas arriver
+à émuler un fonctionnement circuit sur un réseau paquet pour la parole à envoyer vers
+le réseau à commutation de circuit (et avec une compensation/gestion de gigue entre le
+terminal et le 3G MSC). Dans LTE, on a arrêté le raccordement vers le RTC. Par
+conséquent, la voix passant sur IP, la compensation de gigue se fait directement au
+niveau des terminaux utilisateurs (ou au niveau d’une passerelle vers le RTC qui se
+situerait au-delà de la PDN Gateway). On n’est donc plus dans les niveaux protocolaires
+sur lesquels le 3GPP travaille (puisqu’il s’arrête au niveau paquet sur l’UE).
+Par prudence, tout de même, les opérateurs ont décidé dans un premier temps que la
+voix ne serait pas prise en charge dans les lancements du LTE par le réseau LTE mais
+serait rebasculé sur les réseaux 2G/3G sous-jacents (une procédure est alors mise en
+oeuvre). Il en est de même pour les SMS (on en reparlera en TD). Dans un deuxième
+temps, le système VoLTE a été développé – les équipements du réseau ont commencé à
+le prendre en charge puis ce fut le cas des terminaux.
+La deuxième remarque est que l’on a beaucoup moins d’équipements dans le réseau
+d’accès et donc moins de points où prendre des décisions mais aussi de la gigue
+potentiellement.
+La troisième remarque qui est une conséquence des deux premières est qu’en gros on
+peut traiter à peu de frais en termes de qualité de service tout ce qui n’est pas temps réel
+mais qu’il faut faire un effort particulier pour les flux qui sont très contraints
+temporellement. C’est plus rationnel que de vouloir avoir des garanties trop strictes et
+des mécanismes si compliqués que ceux vus en UMTS (et qui ralentissent l’ensemble).
+La quatrième remarque, c’est que les clients LTE n’ont pas tous les mêmes
+abonnements : pro vs. Perso ; services d’urgence ; utilisateurs en nomadisme ; gros
+consommateurs…
+Un premier niveau de différentiation se fera à ce niveau-là.
+Le deuxième niveau porte sur la nature des flux. Par défaut, un utilisateur qui se
+raccorde à LTE va avoir un « tuyau » standard (sans mécanisme très sophistiqué) et c’est
+seulement pour les flux très contraints que l’on ouvrira des « tuyaux » avec des
+garanties.
+DIAPO 24 :
+Les « tuyaux » (ou bearers) vont agréger des flux qui ont les mêmes contraintes et
+seront traités de la même façon. On distingue les bearers à débit garanti de ceux qui ne
+le sont pas.
+DIAPO 25 :
+Les mécanismes de qualité de service impliquent les équipements du réseau d’accès.
+Parmi les problèmes qui avaient été soulevés par le passé, il y avait la difficulté pour les
+sources à exprimer leurs caractéristiques voire leurs besoins. Cela peut se traduire par
+du DPI (Deep Packet Inspection) – une requête SIP décrit le codec utilisé, on peut en
+déduire son débit par exemple.
+DIAPO 26 :
+Voici les différents équipements et les mécanismes associés. Au niveau du terminal, on
+filtre les paquets ; on gère les files d’attente (suite aux réponses d’allocation)
+Sur l’e-Node B : contrôle d’admission, policing, ordonnancement, config. Couches basse,
+mise en correspondance tag DiffServ.
+Sur le réseau de collecte ordo ;
+Sur la passerelle, DPI, policing.
+DIAPO 27 :
+VoIP déjà décrit ; interopérabilité avec systèmes non 3GPP… d’une complexité
+forte
+DIAPO 28 :
+Quelques éléments de modification :
+– Améliorations couche PHY :
+o MIMO : les systèmes multiantennes permettent d’améliorer sensiblement
+les débits (cf. cours de télécoms)
+o Agrégation de porteuses ; idem pour augmenter les débits.
+– Relay Nodes : pour améliorer la couverture des sortes de répéteurs sont mis en
+place. Les problèmes soulevés sont la localisation des fonctions et les
+transmissions entre les Relais et les e-NodeB. Le principe consiste à donner le
+moins de pouvoir à ces relais. On est en train de réinventer les stations de base
+des réseaux précédents !
+– Femtocells : peu de succès car les débits atteints sur le LTE sont souvent plus
+grands que ceux de l’ADSL
+– D2D communications : l’idée est de mettre en place des dialogues directement
+entre les équipements. Attention, on reste dans un contexte Télécoms et donc
+l’allocation des ressources restent sous le pouvoir du réseau. Il s’agira donc de
+conserver le plan de contrôle avec des dialogues avec l’e-NodeB et les données
+directement entre terminaux (on n’est pas dans un mode ad-hoc). La description
+est dans le standard depuis 2013 mais toujours pas déployé. Quels sont les réels
+besoin ?

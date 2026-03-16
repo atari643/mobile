@@ -16,7 +16,7 @@ export default function VoLteIms({ onNext, onPrev, nextLabel, prevLabel }: { onN
           <Phone size={16} />
           Voix sur IP
         </div>
-        <h2 className="text-4xl font-bold text-slate-900 tracking-tight">VoLTE & Architecture IMS</h2>
+        <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-slate-900 tracking-tight">VoLTE & Architecture IMS</h2>
         <p className="text-lg text-slate-600 mt-4 leading-relaxed">
           Le LTE est un réseau purement IP. Contrairement à la 2G/3G, il n'y a plus de commutateur de circuits (MSC). La voix doit donc être transportée comme des paquets de données, mais avec une priorité absolue.
         </p>

@@ -151,7 +151,7 @@ export default function LteMobility({ onNext, onPrev, nextLabel, prevLabel }: { 
               Au lancement du LTE, la VoLTE n'était pas prête. Les opérateurs ont utilisé le <strong>CSFB (Circuit Switched FallBack)</strong> : lors d'un appel vocal, le terminal basculait automatiquement sur le réseau 2G/3G sous-jacent.
             </p>
             <p className="text-sm text-slate-400">
-              Le LTE a été conçu pour s'interconnecter facilement avec les réseaux 3GPP (UMTS, GSM) et non-3GPP (Wi-Fi, CDMA2000), gérés par l'EPC via des passerelles spécifiques (ePDG).
+              Le LTE s'interconnecte avec les réseaux 3GPP et non-3GPP. Les accès non-3GPP sont classés en <strong className="text-amber-300">Trusted</strong> (CDMA2000, WiMax — opérés) et <strong className="text-amber-300">Untrusted</strong> (WiFi — nécessitant une passerelle ePDG pour la sécurité).
             </p>
           </div>
 
@@ -165,8 +165,9 @@ export default function LteMobility({ onNext, onPrev, nextLabel, prevLabel }: { 
             <ul className="text-sm text-slate-400 space-y-2">
               <li><strong className="text-emerald-300">MIMO :</strong> Systèmes multi-antennes massifs pour démultiplier les débits.</li>
               <li><strong className="text-emerald-300">Carrier Aggregation :</strong> Agrégation de plusieurs bandes de fréquences (porteuses) pour créer des "tuyaux" plus larges.</li>
-              <li><strong className="text-emerald-300">Relay Nodes / Femtocells :</strong> Amélioration de la couverture locale.</li>
-              <li><strong className="text-emerald-300">D2D (Device-to-Device) :</strong> Communication directe entre terminaux sous contrôle du réseau.</li>
+              <li><strong className="text-emerald-300">Relay Nodes :</strong> Répéteurs avec un minimum de fonctions, connectés à l'eNodeB.</li>
+              <li><strong className="text-amber-300">Femtocells :</strong> Peu de succès car les débits LTE dépassaient souvent ceux de l'ADSL sous-jacent.</li>
+              <li><strong className="text-emerald-300">D2D (Device-to-Device) :</strong> Plan de contrôle via l'eNodeB, données directement entre terminaux (pas un mode ad-hoc). Standardisé depuis 2013, toujours pas déployé.</li>
             </ul>
           </div>
         </div>

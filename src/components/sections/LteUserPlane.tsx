@@ -12,8 +12,8 @@ interface LayerInfo {
 const layerDetails: Record<string, LayerInfo> = {
   'NAS': { title: 'NAS (Non-Access Stratum)', desc: 'Protocole de plus haut niveau du plan de contrôle. Gère l\'authentification, la sécurité et la gestion de la mobilité entre l\'UE et le MME.', color: 'text-rose-400' },
   'RRC': { title: 'RRC (Radio Resource Control)', desc: 'Gère la connexion radio entre l\'UE et l\'eNodeB. Responsable de l\'établissement, du maintien et de la libération de la connexion RRC.', color: 'text-orange-400' },
-  'PDCP': { title: 'PDCP (Packet Data Convergence Protocol)', desc: 'Responsable de la compression d\'en-tête (ROHC), du chiffrement et de la protection de l\'intégrité des données.', color: 'text-blue-400' },
-  'RLC': { title: 'RLC (Radio Link Control)', desc: 'Gère la segmentation et la concaténation des paquets, ainsi que la correction d\'erreurs via ARQ.', color: 'text-purple-400' },
+  'PDCP': { title: 'PDCP (Packet Data Convergence Protocol)', desc: 'Présent dans les plans utilisateur ET contrôle. Compression d\'en-tête (ROHC), chiffrement et protection de l\'intégrité.', color: 'text-blue-400' },
+  'RLC': { title: 'RLC (Radio Link Control)', desc: 'Segmentation, concaténation et correction d\'erreurs via ARQ. Retransmissions plus rapides qu\'en 3G grâce à la fusion BTS+RNC dans l\'eNodeB.', color: 'text-purple-400' },
   'MAC': { title: 'MAC (Medium Access Control)', desc: 'Gère l\'ordonnancement (scheduling) des ressources radio et la correction d\'erreurs rapide via HARQ.', color: 'text-pink-400' },
   'PHY': { title: 'PHY (Physical Layer)', desc: 'Couche physique gérant la modulation (OFDMA/SC-FDMA), le codage canal et les antennes MIMO.', color: 'text-emerald-400' },
   'GTP-U': { title: 'GTP-U (GPRS Tunnelling Protocol)', desc: 'Encapsule les paquets IP utilisateur dans des tunnels entre les nœuds du cœur de réseau (eNodeB, S-GW, P-GW).', color: 'text-cyan-400' },
@@ -47,7 +47,7 @@ export default function LteUserPlane({ onNext, onPrev, nextLabel, prevLabel }: {
           <Layers size={16} />
           Protocol Stacks
         </div>
-        <h2 className="text-4xl font-bold text-slate-900 tracking-tight">Plan Utilisateur & Contrôle LTE</h2>
+        <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-slate-900 tracking-tight">Plan Utilisateur & Contrôle LTE</h2>
         <p className="text-lg text-slate-600 mt-4 max-w-3xl">
           Visualisation détaillée des piles protocolaires LTE, montrant le cheminement des données utilisateur (User Plane) et de la signalisation (Control Plane).
         </p>

@@ -91,7 +91,7 @@ export default function Quiz({ onNext, onPrev, nextLabel, prevLabel }: { onNext?
         className="bg-white p-12 rounded-3xl border border-slate-200 shadow-xl text-center max-w-2xl mx-auto"
       >
         <Trophy className="mx-auto text-amber-500 mb-6" size={80} />
-        <h2 className="text-4xl font-bold text-slate-900 mb-2">Quiz Terminé !</h2>
+        <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-slate-900 mb-2">Quiz Terminé !</h2>
         <p className="text-xl text-slate-600 mb-8">Votre score : <span className="font-bold text-rose-600">{score} / {quizQuestions.length}</span></p>
         
         <div className="bg-slate-50 p-6 rounded-2xl border border-slate-200 mb-8 text-left">
@@ -131,7 +131,7 @@ export default function Quiz({ onNext, onPrev, nextLabel, prevLabel }: { onNext?
           <HelpCircle size={16} />
           Auto-Évaluation
         </div>
-        <h2 className="text-4xl font-bold text-slate-900 tracking-tight">Testez vos connaissances</h2>
+        <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-slate-900 tracking-tight">Testez vos connaissances</h2>
         <div className="mt-4 flex items-center justify-center gap-4">
           <div className="h-2 w-48 bg-slate-100 rounded-full overflow-hidden">
             <motion.div 

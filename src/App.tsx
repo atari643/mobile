@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { BookOpen, Radio, Network, Layers, Activity, PlayCircle, Signal, Globe, Cpu, Settings, ArrowRightLeft, Zap, ShieldCheck, ArrowLeftRight, GitCompare, HelpCircle, Flag, ChevronUp, Info, Phone } from 'lucide-react';
+import { BookOpen, Radio, Network, Layers, Activity, PlayCircle, Signal, Globe, Cpu, Settings, ArrowRightLeft, Zap, ShieldCheck, ArrowLeftRight, GitCompare, HelpCircle, Flag, ChevronUp, Info, Phone, Menu, X } from 'lucide-react';
 import Intro from './components/sections/Intro';
 import GsmVsGprs from './components/sections/GsmVsGprs';
 import Architecture from './components/sections/Architecture';
@@ -95,6 +95,7 @@ const sectionGroups = [
 export default function App() {
   const [activeSection, setActiveSection] = useState('intro');
   const [showScrollTop, setShowScrollTop] = useState(false);
+  const [sidebarOpen, setSidebarOpen] = useState(false);
 
   useEffect(() => {
     const mainElement = document.getElementById('main-content');
@@ -133,11 +134,29 @@ export default function App() {
 
   return (
     <div className="flex h-screen bg-slate-50 text-slate-900 font-sans overflow-hidden">
+      {/* Mobile Overlay Backdrop */}
+      {sidebarOpen && (
+        <div
+          className="fixed inset-0 bg-slate-950/60 backdrop-blur-sm z-40 lg:hidden"
+          onClick={() => setSidebarOpen(false)}
+        />
+      )}
+
       {/* Sidebar */}
-      <aside className="w-72 bg-slate-900 text-slate-300 flex flex-col shadow-2xl z-10">
-        <div className="p-6 bg-slate-950">
-          <h1 className="text-2xl font-bold text-emerald-400 tracking-tight">Réseaux Mobiles</h1>
-          <p className="text-xs text-slate-500 mt-2 uppercase tracking-wider font-semibold">GPRS / UMTS / LTE</p>
+      <aside className={`fixed inset-y-0 left-0 w-72 bg-slate-900 text-slate-300 flex flex-col shadow-2xl z-50 transform transition-transform duration-300 ease-in-out lg:relative lg:translate-x-0 ${
+        sidebarOpen ? 'translate-x-0' : '-translate-x-full'
+      }`}>
+        <div className="p-6 bg-slate-950 flex items-center justify-between">
+          <div>
+            <h1 className="text-2xl font-bold text-emerald-400 tracking-tight">Réseaux Mobiles</h1>
+            <p className="text-xs text-slate-500 mt-2 uppercase tracking-wider font-semibold">GPRS / UMTS / LTE</p>
+          </div>
+          <button
+            onClick={() => setSidebarOpen(false)}
+            className="lg:hidden p-2 hover:bg-white/10 rounded-lg transition-colors text-slate-400"
+          >
+            <X size={20} />
+          </button>
         </div>
         <nav className="flex-1 overflow-y-auto py-4 scrollbar-thin scrollbar-thumb-slate-700">
           {sectionGroups.map((group, gIdx) => (
@@ -155,6 +174,7 @@ export default function App() {
                         onClick={() => {
                           setActiveSection(section.id);
                           scrollToTop();
+                          setSidebarOpen(false);
                         }}
                         className={`w-full flex items-center gap-3 px-4 py-2.5 rounded-xl transition-all duration-200 text-left ${
                           isActive 
@@ -178,8 +198,18 @@ export default function App() {
       </aside>
 
       {/* Main Content */}
-      <main id="main-content" className="flex-1 overflow-y-auto bg-slate-50 relative scroll-smooth">
-        <div className="max-w-5xl mx-auto p-8 lg:p-12">
+      <main id="main-content" className="flex-1 overflow-y-auto bg-slate-50 relative scroll-smooth w-full">
+        {/* Mobile Header */}
+        <div className="sticky top-0 z-30 bg-slate-900 text-white px-4 py-3 flex items-center gap-3 shadow-lg lg:hidden">
+          <button
+            onClick={() => setSidebarOpen(true)}
+            className="p-2 hover:bg-white/10 rounded-lg transition-colors"
+          >
+            <Menu size={22} />
+          </button>
+          <h1 className="text-lg font-bold text-emerald-400 tracking-tight">Réseaux Mobiles</h1>
+        </div>
+        <div className="max-w-5xl mx-auto p-4 sm:p-6 lg:p-12">
           <ActiveComponent 
             onNext={currentIndex < allSections.length - 1 ? handleNext : undefined}
             onPrev={currentIndex > 0 ? handlePrev : undefined}

@@ -19,7 +19,7 @@ const comparisonData = [
     tech: "W-CDMA",
     access: "CDMA (Code Division)",
     switching: "Circuit (Voix) + Paquet (Data)",
-    throughput: "384 kbit/s -> 42 Mbit/s (HSPA+)",
+    throughput: "2 Mbit/s (faible mobilité) -> 42 Mbit/s (HSPA+)",
     latency: "~100ms - 200ms",
     ran: "UTRAN (Node B + RNC)",
     core: "SGSN + GGSN (évolués)",
@@ -53,14 +53,14 @@ export default function EvolutionSummary({ onNext, onPrev, nextLabel, prevLabel 
           <GitCompare size={16} />
           Synthèse Globale
         </div>
-        <h2 className="text-4xl font-bold text-slate-900 tracking-tight">Comparaison des Générations Mobiles</h2>
+        <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-slate-900 tracking-tight">Comparaison des Générations Mobiles</h2>
         <p className="text-lg text-slate-600 mt-4 leading-relaxed">
           Comprendre l'évolution des réseaux mobiles, c'est comprendre comment nous sommes passés d'un système optimisé pour la voix à un système "Tout IP" ultra-rapide et simplifié.
         </p>
       </header>
 
       <div className="overflow-x-auto">
-        <table className="w-full border-collapse bg-white rounded-2xl overflow-hidden shadow-sm border border-slate-200">
+        <table className="w-full border-collapse bg-white rounded-2xl overflow-hidden shadow-sm border border-slate-200 min-w-[700px]">
           <thead>
             <tr className="bg-slate-50 border-b border-slate-200">
               <th className="p-4 text-left text-xs font-bold text-slate-500 uppercase tracking-wider">Caractéristique</th>
@@ -145,7 +145,7 @@ export default function EvolutionSummary({ onNext, onPrev, nextLabel, prevLabel 
             L'ère GPRS
           </h3>
           <p className="text-sm text-emerald-800 leading-relaxed">
-            On ajoute la data sur un réseau voix. C'est du "Best Effort" : on utilise les slots temporels libres.
+            On ajoute la data sur un réseau voix. On utilise dynamiquement les slots temporels libres. 4 niveaux de QoS (délai/perte) mais encore limité (un seul contexte PDP).
           </p>
         </div>
         <div className="bg-indigo-50 p-6 rounded-2xl border border-indigo-100">

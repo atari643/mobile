@@ -15,7 +15,7 @@ export default function UmtsIntro() {
           <span className="flex h-2 w-2 rounded-full bg-indigo-500"></span>
           Évolution 3G
         </div>
-        <h2 className="text-4xl font-bold text-slate-900 tracking-tight">Transition vers l'UMTS (3G)</h2>
+        <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-slate-900 tracking-tight">Transition vers l'UMTS (3G)</h2>
         <p className="text-lg text-slate-600 mt-4 leading-relaxed">
           Si le GPRS a introduit la commutation de paquets en s'appuyant sur l'infrastructure GSM, ses débits restaient limités et la gestion de la Qualité de Service (QoS) basique. L'<strong className="text-indigo-600">UMTS (Universal Mobile Telecommunications System)</strong> a été conçu pour répondre aux besoins du multimédia et de l'Internet mobile haut débit, avec une gestion de la QoS au cœur de son architecture.
         </p>
@@ -51,15 +51,15 @@ export default function UmtsIntro() {
           <ul className="space-y-3 text-sm text-indigo-800">
             <li className="flex items-start gap-2">
               <span className="text-indigo-400 mt-0.5">•</span>
-              <span><strong>Haut Débit :</strong> Objectif d'atteindre 64 kb/s, 144 kb/s et jusqu'à 2 Mb/s.</span>
+              <span><strong>Haut Débit :</strong> Objectif d'atteindre jusqu'à 2 Mb/s (dans un contexte de faible mobilité). Débits adaptés selon la vitesse de déplacement.</span>
             </li>
             <li className="flex items-start gap-2">
               <span className="text-indigo-400 mt-0.5">•</span>
-              <span><strong>Nouveau Réseau d'Accès :</strong> Création de l'UTRAN avec une toute nouvelle interface radio basée sur le CDMA (W-CDMA en FDD et TD-CDMA en TDD). Unicité du réseau d'accès en mode paquet pour faciliter la gestion d'ensemble.</span>
+              <span><strong>Nouveau Réseau d'Accès :</strong> Création de l'UTRAN avec une toute nouvelle interface radio basée sur le CDMA (W-CDMA). Unicité du réseau d'accès en mode paquet. Simplification clé : fusion des couches LLC et RLC du GPRS en une seule couche RLC.</span>
             </li>
             <li className="flex items-start gap-2">
               <span className="text-indigo-400 mt-0.5">•</span>
-              <span><strong>Standard Mondial :</strong> Projet du 3GPP pour unifier les standards de télécommunications mobiles, intégrant les européens, japonais, coréens et chinois.</span>
+              <span><strong>Standard Mondial :</strong> Projet du 3GPP pour unifier les standards. Possibilité d'avoir <strong>plusieurs contextes PDP simultanés</strong> (vs un seul en GPRS), permettant des flux avec des QoS hétérogènes.</span>
             </li>
           </ul>
         </div>

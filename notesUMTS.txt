@@ -1,0 +1,740 @@
+NOTES SUR LE COURS UMTS – André-Luc Beylot
+Diapo 1 :
+Le succès du réseau GSM n’était pas donné d’avance car les habitudes de communication
+dans des conditions de mobilité ne faisaient pas encore partie de nos vies quotidiennes.
+Jusque là, on avait simplement des « pagers » permettant d’envoyer des messages
+courts, des téléphones de voiture analogiques et très chers…
+En revanche, une fois que l’habitude en a été prise, il était difficile de revenir en arrière.
+Cela a correspondu aux débuts de l’ADSL et les utilisateurs ont souhaité avoir les mêmes
+types de débit d’accès dans les contextes filaires et mobiles.
+Il était donc temps de passer à la suite.
+Désormais, on estime qu’une génération de réseaux mobiles dure 10ans ; c’est donc le
+cas de la 2G (GSM/GPRS/EDGE)
+La dénomination UMTS est une dénomination européenne et dans une partie de l’Asie
+pour les solutions 3G
+Diapo 2 :
+On va tout d’abord motiver la création et décrire le contexte de standardisation pour les
+réseaux UMTS. Nous décrirons les architectures protocolaires et les interfaces qui ont
+été largement repensées dans ce nouveau contexte.
+Les modifications principales portent sur le réseau d’accès intitulé UTRAN qui se
+substitue au réseau d’accès 2G (GSM et GERAN – GPRS Edge Radio Access Network). Le
+réseau de collecte (Core Network) qui venait d’être déployé par les opérateurs mobiles,
+qui leur avait coûté très cher et qui n’était pas encore saturé a surtout subi un « lifting »
+comme nous le verrons à la fin du cours. Attention, si l’on se centre uniquement sur le
+réseau mobile, cette partie du réseau semble être de coeur mais elle permet simplement
+de se raccorder à l’Internet – les paquets de données sont échangés (1er bond pour eux)
+entre le terminal utilisateur et la passerelle entre ce CN et l’Internet. Cela justifie ma
+dénomination dans un contexte plus large des réseaux.
+Les évolutions seront en grande partie vues dans le cours suivant portant sur les
+solutions 3G+.
+Diapo 3 :
+Le GSM a répondu à ce pour quoi il a été conçu : un réseau d’accès mobile pour les
+communications téléphoniques. Il fonctionne en mode circuit et semble calqué sur les
+principes du RNIS. Comme tous les réseaux fonctionnant en mode circuit, il fonctionne
+correctement pour transmettre des flux à débit constant. La seule exception notable (et
+réussie) est celle des SMS que l’on a traitée comme de la signalisation.
+Le GPRS a été conçu comme un deuxième réseau logique permettant la transmission de
+données à débit relativement modéré. Ce réseau logique fonctionne en mode paquet sur
+des ressources du réseau GSM/GPRS mais avec une séparation logique complète. Les
+flux dans le GPRS sont d’une nature homogène, ce qui a permis de traiter la qualité de
+service de façon relativement simple (on en rediscutera dans le TD2 par exemple).
+Cette solution simple ne permet pas la prise en charge facile de nouveaux flux applicatifs
+ayant des qualités de service hétérogènes. La réflexion sur l’UMTS a commencé
+justement au moment où les applications emblématiques de streaming, voix sur IP,
+P2P,… ont pris de plus en plus d’importance (avec le GPRS, c’était essentiellement du
+mail, de la navigation web et du transfert de fichiers).
+Comme à chaque génération de réseaux mobiles, il est bien évidemment indispensable
+d’augmenter les débits utilisateurs. Ici les débits visés devaient aller jusqu’à 2Mb/s
+(dans un contexte de faible mobilité).
+Dans la fin des années 90, l’ITU a décidé de lancer un nouveau projet à l’échelle mondiale
+pour la création de réseaux mobiles de 3ème génération intitulé IMT-2000. Le 2000 fait à
+la fois référence à la date cible de l’arrivée de ces nouveaux réseaux et à la bande de
+fréquence utilisée celle des 2 GHz. L’objectif était qu’une ou des propositions émanent
+des différentes instances de standardisation télécom nationales, continentales.
+Le GSM/GPRS est un grand succès européen de l’ETSI. En revanche, le reste du monde a
+adopté d’autres standards de réseaux mobiles 2G. (Le GSM a fini par être déployé dans
+presque toutes les régions du monde – parfois sur d’autres bandes de fréquences que les
+réseaux européens.) Pour éviter de retomber dans le piège d’un standard continental et
+pas mondial, l’ETSI a cherché des alliés et en a trouvé en Asie.
+A l’instar de ce que l’on a vu dans les cours précédents de réseaux de
+télécommunications, un forum de travail s’est créé instantanément pour accélérer le
+travail de standardisation (cf. FR-Forum, ATM-Forum, ADSL-Forum ; ce dernier est
+devenu le Broadband-Forum).
+Ce groupe s’intitule le 3GPP (Third Generation Partnership Project). Contrairement à
+l’ITU où les représentations sont très officielles, tout le monde peut contribuer à ces
+forums. De nombreux anciens élèves de la formation ont contribué au 3GPP (et aussi à
+l’IEEE et à l’IETF). Son fonctionnement est classique, il est divisé en sous-groupes
+(Radio, Services, Réseaux d’accès, Core Network, Interconnexion/Interopérabilité) ; des
+réunions plénières ont lieu une à plusieurs fois par an. Il fournit des Releases. Ces
+Releases étaient taguées initialement par l’année de la parution, mais comme la Release-
+2000 a tardé à voir le jour, c’est désormais incrémental. On en est à la R-15. La R-16 doit
+sortir en 2020.
+Le 3GPP est une instance particulièrement productive car la liste des propositions de
+standards fait plusieurs dizaines de pages. Chacune de ces propositions faisant à son
+tour entre qq pages et qq centaines de pages. Les documents sont publics et sont ensuite
+entérinés par l’ITU. Ils ne sont en revanche pas forcément très facilement lisibles car,
+pour des standards qui évoluent presque chaque année, les versions sont incrémentales.
+On indique les nouveautés et les différences par rapport à la version précédente en
+renvoyant à la version précédente. Personne à l’heure actuelle ne peut prétendre avoir
+une connaissance fine de tous ces standards.
+Le 3GPP a commencé par s’occuper de l’UMTS (seul) dans ces toutes premières versions
+puis a intégré l’évolution des réseaux 2G (GSM/GPRS/EDGE) puis a continué avec les
+solutions 3G+, puis 4G et maintenant 5G en conservant le même nom. Le standard est
+donc particulièrement complet (ce qui permet d’assurer la transition, l’interopérabilité…
+et l’évolutivité – c’est ce qui a permis finalement de se débarrasser au besoin du Frame
+Relay dans les réseaux GPRS aux alentours de 2010).
+Malheureusement, très peu de temps après, les nord-américains et une partie des
+asiatiques ont créé un forum concurrent : le 3GPP2. Ce dernier a fourni les standards 3G
+intitulés CDMA-2000 qui, vus de loin, reposent sur les mêmes principes que l’UMTS mais
+sont complètement incompatibles. L’ITU-T a entériné les deux propositions CDMA-2000
+et UMTS comme les solutions du projet IMT-2000.
+Les principaux choix fondamentaux de l’UMTS ont porté sur la technique utilisée dans le
+réseau d’accès. Un choix unique s’impose pour faciliter la gestion d’ensemble et éviter
+d’avoir des équipements qui fonctionnent à la fois en mode paquet pour les données et
+en mode circuit pour la voix. L’unicité du réseau d’accès est gage de gains substantiels en
+termes de coûts d’équipement et de maintenance. Le choix s’est naturellement porté
+vers une solution paquet – exactement pour la même raison que 10 ans avant c’était
+l’ATM qui avait été choisi. Le mode circuit facilite largement la gestion des flux car une
+fois la communication établie, les ressources sont garanties – débit et délai constant ; en
+revanche, cela se traduit par une perte de ressources pour les flux à débit variable qui
+sont majoritaires en nombre et surtout en débit induit. La contrepartie avec le mode
+paquet qui a été retenu est la complexité de la gestion des flux. Complexité largement
+accrue en raison de la prise en charge de tous les trafics, dont les trafics de voix que l’on
+va envoyer vers le réseau téléphonique commuté. Pour ces derniers, il s’agira d’émuler
+un circuit sur un réseau paquet.
+En effet, l’UMTS permet de se raccorder, comme pour le RNIS et le GSM/GPRS,
+indifféremment à un réseau paquet et à un réseau circuit.
+Il a donc fallu redéfinir complètement l’interface radio, mais aussi l’ensemble du réseau
+d’accès (ni le GSM, ni le GPRS ne convenaient pour ce contexte multiservice et à
+différentiation de qualité de service).
+Un autre point essentiel a été de réfléchir dès la création du standard à une solution
+évolutive. Il s’agit de ne pas figer prématurément les solutions protocolaires pour
+permettre de faire évoluer à moindre coût les équipements. L’équipement le plus
+sensible est le terminal utilisateur. La moindre modification impose potentiellement de
+changer tous les terminaux (ou de prévoir une compatibilité ascendante qui permettre
+de prendre en charge de nouveaux terminaux et des anciens).
+La dernière caractéristique est celle avouée d’ « améliorations » des solutions
+protocolaires. Je le mets volontairement entre guillemets car le résultat est pour le
+moins surprenant comme vous le verrez… La seule simplification provient de la fusion
+des couches LLC et RLC du GPRS.
+Diapo 4 :
+Comme nous l’avons vu dans les cours GSM/GPRS, la notion de qualité de service n’était
+pas centrale dans les architectures du GSM/GPRS en tout cas pas au niveau des
+réflexions menées en parallèle dans les réseaux filaires par exemple. Les 4 niveaux de
+qualité de service du GPRS permettent sensiblement d’activer les mécanismes LLC ou
+RLC de fiabilisation. Les premiers travaux qui ont été menés ont commencés par offrir la
+possibilité aux utilisateurs d’avoir plusieurs contextes PDP de transmission de données
+leur permettant d’avoir plusieurs flux avec des niveaux de qualité de service
+hétérogènes.
+La réflexion qui a été menée sur la différentiation de qualité de service s’est largement
+inspirée des travaux qui ont été menés les années précédentes avec la proposition
+d’ATM et par les travaux de l’IETF plus modestes sur la différentiation de qualité de
+service et bien sûr sur MPLS. La volonté des opérateurs était de proposer une solution
+qui permette en particulier de préserver les flux de voix ! Mais aussi de permettre
+d’ajouter facilement de nouveaux services/applications.
+Diapo 5 :
+Le premier travail qui a été mené par le 3GPP a été de s’interroger sur les services que
+l’on voulait proposer aux utilisateurs. Cette réflexion a été plus compliquée que dans le
+GSM/GPRS : pour le GSM on voulait un service de voix à partir de mobiles ; pour le GPRS,
+on voulait se resservir des équipements déployés pour offrir un service de transmission
+de données qui soit plus efficace que le GSM (et sa proposition) en mode circuit.
+Cette réflexion sur les applications fait désormais partie intégrante de tous les travaux
+préparatoires à la création de nouvelles générations de réseaux mobiles. Notons que
+cela avait également été le cas pour ATM.
+D’ailleurs la classification pour ATM avait abouti à 4 classes de service. C’est de nouveau
+le cas. En revanche en ATM, plus de critères avaient prévalus à la classification : débit
+constant/variable ; contrainte de délai (O/N), mode connecté de l’ « application
+utilisatrice » (O/N). On le voit ici ce sera essentiellement la contrainte de délai qui
+apparaît.
+Conversationnel : contrainte de « temps réel » (au sens réseaux du terme – ce n’est pas
+le temps réel dur des systèmes embarqués) – voix, visiophonie – le débit peut être
+constant ou pas ; la voix sur IP en fait partie ;
+Streaming : là la contrainte de délai est moindre. Il n’y a pas de dialogue entre
+extrémités ;
+Interactif : de type navigation web – la contrainte de délai est faible. Les dialogues sont
+en mode client-serveur donc elle n’est pas nulle sinon les utilisateurs se lassent
+Trafic de fond : Transfert de fichiers, SMS, mail
+Diapo 6 :
+Le transparent est très moche (j’aurai dû citer mes sources – les précédents sont issus
+du site du 3GPP). Ce qu’il faut retenir, c’est la grande diversité des paramètres de qualité
+de service entre les différents flux. La version GPRS est maigrelette ; dans l’UMTS, il y a
+un grand nombre de paramètres. Attention, tous les critères ne s’appliquent pas à tous
+les types de flux. C’est dans le même esprit que ce qui a été fait pour ATM. Ce qui est un
+peu décevant, c’est tout de même qu’en ATM, on avait distingué par classe de service la
+description du trafic d’une part et les besoins en qualité de service d’autre part ; là les
+critères et les descripteurs sont un peu mélangés.
+Diapo 7 :
+La vision de l’ITU de ce que devait être la 3G était : des cellules de la plus grande à la plus
+petite taille – dans les campagnes des cellules de grande taille ; dans les villes des
+cellules de plus en plus petites (micro, pico). Quelques années après, la notion de femtocellules
+est également apparue. L’objectif était de permettre aux utilisateurs d’utiliser
+leur équipement 3G chez eux et d’avoir une box qui fasse point d’accès 3G en se
+raccordant à l’ADSL. Cette solution a connu un certain succès commercial répondant aux
+besoins de PME. Dans les systèmes 4G, les opérateurs ont menées les études pour
+proposer l’équivalent. En revanche, le besoin est moindre. En effet, généralement le
+débit de la 4G est plus grand que l’ADSL (et souvent comparable à la fibre). C’est même
+plutôt l’inverse qui sera proposé et qui fera que l’on a du Wifi à la maison et le point
+d’accès sert lui potentiellement de passerelle vers la 4G (cela fait partie des offres des
+opérateurs).
+Outre la taille des cellules, les réseaux 3G doivent permettre la prise en charge d’une
+mobilité plus rapide. Enfin, un complément par satellite au travers du S-UMTS a été
+normalisé. Il n’a pas été déployé (le monde du satellite doit souvent justifier son
+existence par rapport aux standards terrestres ; c’est encore le cas en 4G et en 5G où un
+groupe de travail s’est créé pour tous les types d’accès où les temps de propagation ne
+sont pas négligeables – ballons, satellites à orbite basse, à orbite géostationnaire.
+Diapo 8 :
+L’architecture système des réseaux 3G ressemble à celle des réseaux d’accès 2G. On a un
+réseau d’accès composé des terminaux, des stations de base, des contrôleurs de stations
+de base qui permettent de se raccorder au RTC ou à l’Internet via un réseau de collecte.
+Malheureusement, pour montrer l’évolution par rapport à la 2G et pour faire plaisir aux
+nouveaux participants, les noms de tous les équipements ont été redéfinis (cf. figure).
+Pour l’essentiel, la nouveauté est le lien direct entre contrôleurs de stations de base.
+Celui servira en particulier dans les phases de handover pour en accélérer/améliorer le
+fonctionnement. Notons que les équipements 3G-SGSN, 3G-GGSN et 3G-MSC sont
+apparus, la modification est surtout vis-à-vis des équipements côté réseaux d’accès.
+Diapo 9 :
+Dans cette diapo, sont recensés d’un côté le vocabulaire 2G, de l’autre le vocabulaire 3G.
+Pour des raisons pédagogiques, je continuerai à utiliser le vocabulaire 2G pour parler de
+station de base et de contrôleur de station de base dont les équivalents 3G (node-B et
+RNC) sont moins parlants. La seule différence est l’apparition du lien entre contrôleurs
+de stations de base et donc l’apparition de l’interface Iu-r.
+BSS = ensemble composé de la station de base et de son contrôleur.
+Diapo 10 :
+La création du GSM avait été menée au travers de la définition de fonctions-réseaux :
+Gestion des Appels ; Gestion de la Mobilité ; Gestion des Ressources Radio.
+Instantanément, un protocole applicatif dans le plan de contrôle a été créé et les piles de
+protocoles associées définies. Cette solution est rapide en soi mais est l’une des sources
+de l’absence d’évolutivité des architectures des systèmes 2G. Disons qu’il ne faut tout de
+même pas refaire l’histoire, c’est facile en 2020 de dire que l’on aurait dû faire
+différemment en ne figeant pas trop vite les protocoles alors qu’en 1992, les concepteurs
+partaient d’une page blanche pour la création d’un système dont ils ne pouvaient pas
+prévoir le succès !
+La conception de l’UMTS est passée par une définition fonctionnelle – attention ces
+fonctions seront tout de même relativement proches de celles du GSM. Pour chacune de
+ces fonctions, on a défini une « strate ». Une strate va recenser l’ensemble des
+équipements et des interfaces qui s’occuperont de la fonction.
+La strate « applicative » concerne les communications des utilisateurs. Les extrémités
+sont le terminal utilisateur d’une part et un terminal/un serveur qui est situé dans un
+réseau extérieur. Attention, l’UMTS ne pourra pas standardiser ce qui se passe dans le
+réseau extérieur et s’arrêtera sur une passerelle vers le fameux « réseau extérieur » que
+ce soit téléphonique ou Internet. Tous les équipements sont concernés.
+La strate « personnelle » correspond à l’utilisateur : son abonnement, ses droits, sa
+protection, son nomadisme. Les échanges se déroulent entre l’utilisateur et des
+équipements qui sont situés dans le réseau de son opérateur mobile (par ex. la HLR). Il y
+a aussi les échanges entre HLR et VLR…
+La strate de « service » fait référence au fait que l’on a un réseau à intégration de service
+avec le même sens que le RNIS. L’utilisateur va en fonction de ses besoins activer des
+services. Cette signalisation se déroule entre le terminal utilisateur et le point d’entrée
+du CN avec lequel il va dialoguer pour dire ce qu’il veut faire (échanges terminal avec
+MSC ou SGSN)
+La strate d’ « accès radio » correspond à la gestion des ressources radio : allocation en
+fonction des besoins, gestion lors des handovers.
+On observe donc que ces fonctions sont presque les mêmes que dans le GSM mais sans
+figer instantanément les protocoles.
+Diapo 11 :
+La couche physique de l’interface radio est sans doute celle qui a été la plus
+profondément modifiée sur l’interface radio. Plusieurs solutions ont été en discussion ;
+une amélioration du MF-TDMA du GSM/GPRS et le CDMA étaient en concurrence. Les
+européens étaient majoritairement en faveur du MF-TDMA ; c’est néanmoins le CDMA
+qui a été retenu - Accès Multiple à division par code. On attribue des codes orthogonaux
+aux utilisateurs, en jouant sur la longueur du code et la puissance d’émission. Cette
+orthogonalité permet d’effectuer le décodage.
+Pour les parcours R & T, je les renvoie au cours complet qu’ils ont eu sur le CDMA. Pour
+les A, je crois qu’ils pourront se contenter de ces explications !
+Le CDMA avait déjà été utilisé dans des systèmes 2G américains ; il réapparaît de temps
+en temps même si son succès fut extrêmement éphémère.
+Il est à la base de l’UMTS et du CDMA-2000.
+Dans les systèmes 2G, on avait parlé de la notion de canal physique – un intervalle de
+temps sur une fréquence porteuse donnée qui étaient ensuite partagé entre plusieurs
+canaux logiques : statiquement dans le contexte du GSM – les canaux logiques sont
+parfaitement périodiques (c’est une philosophie de réseau circuit) et dynamiquement
+dans le contexte du GPRS – le partage du canal physique est choisi par le sous-système
+station de base entre les différents canaux logiques (de données, de contrôle…).
+Dans les systèmes 3G, on a mieux maîtrisé/utilisé la variabilité inhérente du canal de
+communication. On aura donc des canaux physiques de communication (émission sur le
+support de communication) et des canaux logiques qui vont correspondre aux flux de
+données et de contrôle des utilisateurs. On intercale entre ces deux canaux, la notion de
+canal de transport qui sera là pour masquer aux canaux logiques la variabilité de la
+qualité du canal de transmission. On va multiplexer les canaux logiques sur les canaux
+de transport (le canal de transport pourra être utiliser par plusieurs flux de données
+par exemple pour un utilisateur) mais ensuite, le réseau doit se débrouiller pour trouver
+le « bon » canal physique. Pour le reste, on a comme en GSM, des canaux uniquement
+physiques communs pour diffuser les infos systèmes, des canaux dédiés et des canaux
+communs.
+DIAPO 12 :
+La couche physique a été largement améliorée par rapport au GPRS : code d’erreur,
+codage canal, entrelacement… Je renvoie au cours de Benoît Escrig !
+DIAPO 13 :
+La gestion du handover en GSM/GPRS reposait sur la notion de « hard handover » ou
+bien « break before make ». On enlève les ressources radio dans l’ancienne cellule puis
+on attribue des ressources dans la nouvelle. Les décisions sont prises par le réseau. Le
+choix de l’instant de déclenchement du handover et de la cellule cible répond à des
+algorithmes qui ne sont pas normalisés.
+Dans le contexte UMTS, les choix algorithmiques sont bien évidemment encore du
+ressort des opérateurs et le déclenchement du handover et l’allocation des ressources
+sont gérées côté réseau. L’utilisateur n’en a pas la décision.
+Avec l’UMTS, on a vu apparaître la possibilité du soft-handover. La philosophie est alors
+de type « make before break ». Cela revient à dire, cf. schéma qu’un utilisateur sera
+raccordé en même temps à deux cellules. L’intérêt sera alors de ne pas avoir à se
+préoccuper de mécanismes compliqués de retransmission de données qui seraient en
+souffrance quelque part dans le réseau d’accès. En revanche, cela va compliquer la
+donne globale et consommer des ressources. Si l’on prend le cas où l’on change de
+contrôleur de station de base, pendant toute la durée du handover, on sera rattaché à
+deux stations de base, elles-mêmes à leur contrôleur de station de base. Pendant cette
+phase, le contrôleur de station de base initial va continuer à servir de passerelle vers le
+Core Network (serving RNC). Le nouveau contrôleur est appelé Drift RNC. Les
+« données » (attention il peut y avoir de la signalisation dedans, de la voix, …) vont donc
+alors être envoyées sur les deux chemins disponibles. Plusieurs solutions sont alors
+possibles quand on reçoit les données : on ne conserve que le signal reçu de meilleur
+qualité ; on peut essayer de combiner… En UMTS, on s’est contenté de conserver le
+meilleur des deux signaux. C’est dans ce contexte-là que le lien entre contrôleur de
+stations de base est utile pour ne pas avoir à faire remonter les informations jusqu’au
+SGSN ou au MSC. Cette technique qui consiste à utiliser plusieurs chemins s’appelle de la
+macro-diversité (parcours T de 3A).
+DIAPO 14 :
+A l’instar de ce qui avait été retenu dans le réseau GPRS (et un peu dans la même
+philosophie que pour les réseaux locaux), l’accès et le partage du support est une
+fonction clé des réseaux pour lesquels les supports de communication sont partagés
+entre plusieurs utilisateurs. On distinguera donc une couche MAC qui s’occupera de ce
+partage de ressources et d’une couche RLC qui s’occupera du contrôle et des
+retransmissions. La couche MAC va traiter les canaux logiques et les mettre en
+correspondance avec les canaux de transport (qui ont sont proposés par la couche
+physique). On retrouvera des canaux logiques de données (trafic) en point-à-point ou en
+point à multipoint (sens descendant ; pour faire du multicast – transmission d’un même
+flux à plusieurs terminaux) et des canaux de contrôle.
+La couche MAC gérera des niveaux de priorité entre les différents flux et remontera des
+informations. Plusieurs entités MAC sont implantées selon le type de canal. La couche
+MAC est située sur le contrôleur de stations de base sauf pour les canaux de diffusion
+(infos systèmes) qui elle est implantée sur la station de base. Ces protocoles MAC sont
+aussi implantés sur les terminaux utilisateurs !
+DIAPO 15 :
+La couche RLC est sans doute la seule vraie simplification par rapport au GPRS. On a
+fusionné la couche RLC et la couche LLC du GPRS. Elle se déroule entre le contrôleur de
+station de base et le terminal utilisateur. Les fonctions sont l’union des fonctions qui
+étaient en GPRS proposées par la couche LLC ou la couche RLC : segmentation,
+concaténation, reprise sur erreur/perte, chiffrement. Plusieurs services sont proposés,
+comme dans la couche LLC du GPRS (transparent, sans accusé de réception, juste
+détection d’erreur/perte, avec retransmission – mécanisme de retransmission du même
+type que dans le LLC).
+DIAPO 16 :
+L’ensemble des protocoles PHY/MAC/RLC s’applique à tous les flux : du plan de données
+et du plan de contrôle y compris à la parole téléphonique que l’on va envoyer vers le
+réseau téléphonique commuté et pour laquelle on va émuler un circuit mais qui est prise
+en charge en mode paquet (RLC, MAC – on est bien en mode paquet).
+Au-dessus de la couche RLC, cela va commencer à différer.
+Pour la parole téléphonique que l’on va envoyer vers le RTC, il n’y a plus rien (à part le
+codage source – le codec de voix de l’UMTS).
+Pour les données utilisateur, paquets IP, on les fait passer par une couche de
+compression sans perte, à l’instar du SNDCP du GPRS. On compresse séparément les entêtes
+et les données. La différence importante avec SNDCP, c’est qu’entre temps, l’IETF
+s’est penchée sur les techniques de compression sans perte des paquets IP – l’en tête où
+l’on gagne beaucoup et les données – où l’on gagne assez peu. Il s’agit à la fois de
+techniques algorithmiques avec un petit peu de protocoles (au moins pour échanger les
+algorithmes et les paramètres des algorithmes). Le plus emblématique s’appelle ROHC
+(Robust Header Compression).
+Pour le plan de contrôle, un nouveau protocole a été créé, il s’appelle RRC – Radio
+Resource Controller. Ici se situe sans doute l’essentiel de la force de l’UMTS en termes de
+gestion de la qualité de service. Ce protocole RRC va diriger l’ensemble du
+fonctionnement du réseau radio : tous les autres protocoles lui remontent des
+informations et il prend les décisions. C’est lui qui va s’occuper d’ouvrir les « tuyaux »
+radio. Le terme tuyau est la traduction du mot « bearer » anglais. Pas de traduction
+satisfaisante ; on pourrait parler de connexion mais cela va au-delà car on passe
+plusieurs liens avec des protocoles très variés et pour lesquels la notion de ressource
+n’est pas la même (sans fil, filaire). La couche RRC configure ce tuyau en fonction de la
+qualité de service requise par le flux, pilote la gestion des priorités, la mise en
+correspondance entre canaux de transport et canaux physiques.
+Au-dessus de la couche RRC, on retrouvera la signalisation CM et MM du GSM à
+destination du réseau circuit d’une part et la signalisation GMM du GPRS à destination
+du réseau paquet.
+Les protocoles PDCP et RRC se déroulent entre le contrôleur de station de base et le
+terminal utilisateur.
+Comme on le voit, on est bien dans un monde télécom avec une fonction centralisée et
+un pilotage complet par l’opérateur !
+Diapo 17 :
+Voici donc l’architecture complète de l’interface Usager-Réseau Uu de l’UMTS.
+Les plans données et contrôle sont communs de la couche RLC à la couche PHY ;
+contrairement au GPRS, les couches RLC et MAC sont bien empilées l’une sur l’autre ;
+tout passe en mode paquet. On voit que la couche RRC est liée à tous les protocoles, ce
+qui lui permet de les piloter.
+Les ellipses correspondent à des points d’accès au service. On observe que ce schéma
+n’est pas conforme au modèle de référence OSI. En effet, il y a des points d’accès au
+service entre des couches non adjacentes (PHY et RRC par exemple, ou MAC et RRC).
+L’inconvénient est qu’il est plus difficile d’enlever une couche et de la remplacer par une
+autre. Mais comme il s’agit des terminaux utilisateurs, cela n’a pas vocation à changer
+très souvent. En revanche, l’avantage fondamental, sera qu’il est beaucoup plus rapide
+avec une telle configuration d’échanger des informations entre RRC et PHY ou MAC par
+exemple. En effet, avec une architecture classique, la couche PHY qui veut remonter une
+mesure à la couche RRC est obligé de remonter à MAC qui remonte à RLC qui remonte à
+RRC. Ces primitives de service sont émises de manière asynchrone ; le délai et
+l’overhead sont grands.
+Ce type d’architecture protocolaire est qualifiée de « cross-layer » (les traductions
+intercouches, transcouches, multicouches ne sont pas satisfaisantes). Ce courant de
+pensée a commencé à émerger avec les réseaux mobiles et sans fil pour essayer de tirer
+profit rapidement d’informations entre des niveaux protocolaires non adjacents. Par
+exemple pour que la couche transport tire profit d’informations de la couche MAC pour
+éviter de prendre un support de communication dégradé avec une congestion. La
+littérature a été particulièrement prolifique mais ce sont surtout les réseaux télécoms
+qui en ont tiré profit – celles du domaine sans fil ont surtout connu un succès d’estime
+en particulier parce que l’on a du mal à toucher à TCP par exemple. Cette réflexion sur la
+non indépendance entre les couches n’est pas complètement isolée – les commutateurs
+Ethernet regardent parfois les paquets IP qu’ils transportent.
+Le succès vient du fait que les opérateurs télécoms font bien ce qu’ils veulent sur ces
+niveaux protocolaires et qu’une entité centrale dans le contrôleur de station de base se
+justifie pour piloter l’intégralité du réseau UTRAN.
+Une autre façon de procéder aurait pu être à l’instar de ce que l’on fait en gestion de
+réseau (cf. cours ATM par exemple ; ou cours de gestion de réseau qui doit être en 3A ?
+avec le protocole SNMP) d’avoir un protocole transverse (le plan de gestion n’est pas
+structuré en couches) qui communique avec des points d’accès au service avec tous les
+protocoles de la pile de protocoles. Dans ce type de configuration, les différents niveaux
+protocolaires auraient pu envoyer les informations dans le plan de contrôle et la couche
+RRC venir ensuite les recueillir. Cela aurait été plus propre car sensiblement conforme
+au modèle OSI mais cela aurait tout de même deux primitives de service, cela aurait été
+donc plus lent en particulier dans le sens descendant de pilotage + ce n’est pas la
+philosophie d’un plan de gestion qui est là pour travailler sur le long terme
+(configurations d’équipements, collectes de mesures générales) et pas sur les
+communications elles-mêmes.
+Dans le plan de données, on voit apparaître le protocole BMC comme Broadcast et
+Multicast. Le Multicast consiste à permettre la diffusion d’un même flux à plusieurs
+utilisateurs avec une gestion d’arbre de diffusion pour mutualiser les transmissions. La
+gestion protocolaire et algorithmique du Broadcast est en 3A (parcours IBDIoT). La
+question qui s’est posée est celle de la diffusion des flux de télévision dans les réseaux
+3G. La solution Broadcast est à proscrire car sinon, on occuperait toutes les ressources
+des réseaux 3G pour diffuser la télévision (il y a des réseaux pour cela). La solution
+suivante est celle de l’Unicast. Chaque utilisateur qui veut voir un flux de télévision le
+demande et le reçoit. La solution intermédiaire était la solution de Multicast grâce à ce
+protocole BMC. L’intérêt est d’être beaucoup moins consommateur en ressources radio
+que la solution Unicast (et aussi Broadcast). On diffuse le flux une seule fois sous réserve
+qu’il y ait au moins un abonné à ce flux multicast dans la cellule. Le souci, c’est que l’on
+est obligé de diffuser en utilisant les conditions (modulation et codage) de l’utilisateur
+qui est dans les pires conditions de réception. Le service a été lancé par les opérateurs
+Orange et T-Mobile mais s’est vite arrêté devant le manque de succès. Des services
+équivalents de Broadcast et Multicast réapparaîtront avec la 4G et la 5G… (à titre
+personnel, j’ai surtout vu des travaux de recherche sur ces services dans des thèses de
+doctorat par exemple, des articles, c’est présent dans les standards et c’est assez
+compliqué à gérer).
+Diapo 18 :
+Voici la version avec les équipements associés des piles de protocoles du réseau UMTS
+plan donnée et plan de contrôle. Pour ces flux, la couche PHY de l’interface Uu se déroule
+entre le terminal mobile et la station de base alors que les couches RLC, MAC se
+déroulent entre le terminal et le contrôleur de station de base. La difficulté va venir dans
+le réseau de la différence de localisation de ces couches dans le réseau. Comment faire
+pour rapatrier les informations de la station de base à son contrôleur. Dans le GPRS,
+dans la pile de protocole, j’avais un peu caché ce problème en ne représentant qu’un
+équipement le BSS et pas la BTS et le BSC. En fait, je l’avais dit à l’oral, de façon un peu
+décevante, le choix avait été de choisir un mode circuit entre les deux (comme pour la
+voix GSM). Ici le choix s’est naturellement porté sur un mode paquet. On va donc
+récupérer des PHY-SDU au-dessus de la couche PHY qu’il faudra renvoyer vers la couche
+MAC située sur le contrôleur de station de base.
+Diapo 19
+ATTENTION C’EST LE MOMENT DIFFICILE DE CE COURS
+Pour éviter de tomber dans les pièges du GPRS où les protocoles ont été figés trop vite et
+où du coup, les opérateurs/équipementiers ont dû vivre pendant 10 ans avec du Frame
+Relay entre les contrôleurs de station de base et les SGSN, la standardisation 3GPP a
+essayer de rationnaliser la conception des interfaces entre les différents équipements du
+réseau d’accès UTRAN. Ces interfaces concernent des équipements du réseau (stations
+de base, contrôleur de station de base, MSC, SGSN) et pas les terminaux utilisateurs pour
+lesquels il faut toucher le moins possible les piles de protocole (en particulier les
+couches basses) car sinon, il faut changer des millions de terminaux.
+L’idée va donc être d’identifier sur chaque interface, les flux qui vont être véhiculés qui
+sont des flux de « données » utilisateur qui devront donc être envoyés ensuite sur
+l’interface radio (ou qui y ont été collectées) et des flux de contrôle qui vont permettre la
+configuration et la gestion des différents équipements du réseau radio. C’est la partie
+haute du schéma. Celle-ci, on peut la fixer. En revanche la façon avec laquelle ces flux
+vont être véhiculés sur chacun des liens peut évoluer au cours du temps. C’est la partie
+basse du schéma. On a donc une pile de protocoles pour véhiculer les flux de données et
+une pile de protocoles pour véhiculer le contrôle. On est en mode paquet donc la couche
+physique sera la même et l’on aura au moins un protocole qui fonctionne en mode
+paquet qui sera également commun. Attention, à ce niveau, on ne dit pas lequel.
+Pour piloter le plan de données, on peut être amené à mettre en place une pile de
+protocoles de plan de contrôle qui gérera le plan de données sur le lien considéré ! C’est
+là que c’est compliqué car on a des flux de commande (à gauche) qui correspond à des
+flux de signalisation permettant de piloter les équipements de l’UTRAN (le contrôleur de
+station de base contrôle sa station de base) et un deuxième plan de contrôle au milieu
+qui pilote les flux de données. Mais les flux de commande de gauche sont vis-à-vis de
+l’interface traversée des données.
+Bon ce n’est pas la première fois que l’on voit cela, les messages du protocole RRC passe
+aussi par la pile de droite (le plan de contrôle de l’interface Uu).
+La signalisation téléphonique à destination du réseau téléphonique par exemple sera
+considérée dans l’UMTS comme des flux de données dans l’UTRAN !
+(ce n’est ni du pilotage du réseau radio, ni de la signalisation de transfert des données
+pour le lien considéré).
+DIAPO 20 :
+On va commencer par l’interface entre la station de base et le contrôleur de station de
+base. Côté station de base, on n’a que la couche PHY et l’on récupère les messages
+envoyés dans les canaux de transport (PHY-SDU). On veut les envoyer vers la couche
+MAC qui est située sur le contrôleur de station de base. Il y a là la voix, la signalisation
+téléphoniques, les flux de données… Le choix qui a été fait a été de mettre un protocole
+intitulé Frame Protocol qui va récupérer ses messages pour les envoyer vers le
+contrôleur de stations de base. En fait, ce n’est pas un mais plusieurs protocoles qui ont
+été normalisés : les Frame Protocols. Un seul protocole n’aurait pas permis de faire face
+à l’ensemble des canaux présents sur l’interface radio (RACH, DSCH, PCH…). Il y a donc
+un protocole FP par type de canal.
+La question suivante est de déterminer la pile de protocoles à utiliser entre station de
+base et contrôleur. La couche PHY dépend du support utilisé. Pour l’UMTS on aura
+majoritairement de la fibre optique donc ce sera de la SDH et minoritairement des
+faisceaux hertziens avec de la PDH. Là on est encore en mode circuit !
+Les solutions au-dessus auraient pu être :
+- X.25 – trop lent ; FR : pas de qualité de service différenciée propre ;
+- Ethernet ; pas vu encore comme une technique de réseau d’opérateurs ;
+- IP
+- ATM.
+Les réflexions ont donc porté sur une solution ATM ou une solution IP. Dans les faits la
+première solution implantée a été ATM puis dans un deuxième temps IP. Mais le
+standard permet aussi bien l’une que l’autre.
+Le débat a porté essentiellement sur l’overhead et la qualité de service. Et là ATM l’a
+emporté nettement en particulier dans un contexte où ce qui faisait peur aux opérateurs
+c’était les flux de voix (la même peur est revenue 10 ans plus tard avec LTE). En effet,
+même si les flux de voix n’engendrent pas un débit colossal (individuellement et même
+de façon agrégée), ils sont pénibles en termes de qualité de service (latence très courte,
+peu de gigue que l’on rattrape éventuellement au niveau du MSC) mais aussi d’overhead
+(les mettre dans une cellule ATM est moins coûteux que dans un paquet IP – attention
+on parle bien de la voix que l’on envoie vers un réseau circuit ; il n’y a pas ici le PDCP du
+plan de donnée qui lui se déroule pour les paquets IP sur le terminal).
+Si on prend de l’ATM, il faut définir une couche d’adaptation. A la fin de la
+standardisation ATM, seule l’ATM AAL-5 avait sensiblement subsisté : AAL-1 pour la
+voix à débit constant, AAL-2 pas finie – flux à débit variable et contraints
+temporellement, AAL-3/4 pour transporter des paquets – chère et complexe + AAL-5.
+Les choix possibles auraient été soit de considérer plusieurs AAL en parallèle une par FP
+par exemple soit de n’en prendre qu’une. Si l’on regarde les AAL, celle qui doit traiter les
+flux complexes est l’AAL-2 qui peut traiter les flux à débit variable contraints
+temporellement. Le 3GPP s’est alors retourné vers l’ATM-Forum en demandant de
+spécifier une nouvelle AAL-2.
+Cette nouvelle AAL-2 va donc un peu à l’instar de l’AAL-5 être à géométrie variable
+(paramétrable sur la partie haute pour inclure des fonctionnalités en fonction des types
+de flux). On a aussi imposer à cette nouvelle AAL-2 de permettre de faire du
+multiplexage : plusieurs flux de données sur la même connexion ATM-AAL2 et de la
+concaténation. Là c’est bien les flux de voix que l’on vise pour permettre de remplir au
+mieux les cellules ATM avec des bribes de voix de plusieurs communications
+téléphoniques en même temps ! Ce sont ces fonctions de multiplexage et de
+concaténation qui ont imposé cette nouvelle AAL-2 car l’AAL-5 était déjà multi-usage
+mais ne permettait pas cela.
+Il a donc fallu aussi renormaliser le plan de contrôle de l’ATM et là c’est la colonne du
+milieu où l’on a la signalisation pour les connexions ATM-AAL2. L’AAL utilisée pour la
+signalisation est une variante de l’AAL-5. Elle permet d’envoyer de façon fiable des
+messages de signalisation. C’est bien toujours le cas ici ; on n’a pas la contrainte
+temporelle ni la présence de mini-messages à transmettre. C’est la SAAL qui est
+réutilisée ici. A contrario, on est ici à l’accès au réseau ATM et le protocole qui permettait
+de gérer les connexions ATM – Q.2931 ne convient pas car il ne permet pas de faire le
+multiplexage. Il a fallu redéfinir un nouveau protocole, ce sera Q.2630.1.
+Si maintenant on regarde la pile de gauche. C’est toujours de la signalisation et pas des
+flux de données donc pas besoin d’ATM-AAL2 ; on utilise donc de l’ATM-AAL5. Attention,
+on considérera des connexions permanentes entre la station de base et son contrôleur
+(pas besoin de signalisation supplémentaire pour cela). Les types de fonction prises en
+charge par NBAP : gestion de la configuration de la cellule, supervision et gestion du lien
+radio, gestion des canaux de transport communs, mesures sur les ressources communes
+et dédiées.
+Le choix que l’on aurait pu envisager aurait été d’avoir des AAL par type de trafic : AAL1
+pour la voix, AAL2 (?) pour la vidéo, AAL5 pour le reste. Cela aurait encore complexifié le
+système car on aurait eu une multitude de protocoles dans la colonne de droite… et
+aussi potentiellement dans la colonne du milieu car la signalisation de cette pile de
+droite aurait donné lieu à plusieurs piles de protocoles.
+Notons encore que par exemple pour l’AAL1 pour la voix n’aurait pas été aussi simple
+que de l’AAL1 dans un réseau ATM classique. En effet, cette AAL1 était prévue pour
+fonctionner directement en dessous des Codecs de voix… et là ce ne sont pas les mêmes
+codec, on est passé par la couche RLC, MAC et PHY sur le terminal puis par le lien radio !
+Les sources de gigue sont donc nombreuses dans cet ensemble !
+Après cette première solution qui a été déployée, la solution IP a également été
+proposée par le 3GPP. Pour des raisons symétriques, on a besoin d’une couche 4 et d’une
+couche 2 (la couche 1 restant SDH ou PDH). En termes de couche 2, plutôt pas de l’ATM
+et donc plutôt du PPP. En termes de couche 4 : TCP, UDP ou TCP/UDP selon le type de
+flux. Dans ce cas naturellement, il est préférable de faire un choix. Le seul raisonnable :
+UDP. Attention, quel que soit le choix, la pile du milieu est vide.
+Pour la pile de gauche, on mettra de l’IP/PPP naturellement, on ne va pas conserver de
+l’ATM à gauche après l’avoir enlevé ! Là, en revanche, on mettrait du TCP pour la
+fiabilisation (dans les faits c’est SCTP qui a été standardisé dans le groupe de travail
+SIGTRAN de l’IETF cf. pour les groupes R et A, le cours d’interconnexion de réseau).
+DIAPO 21 :
+Il s’agit cette fois de l’interface entre contrôleurs de stations de base utilisée lors des soft
+handovers. On voit cette fois de très nombreuses similitudes avec la diapo précédente.
+Ce sont en effet les mêmes raisonnements qui peuvent être menées. La seule différence
+est que cette fois-ci, on n’est plus à l’accès à un réseau ATM (c’était la diapo précédente) ;
+la pile du milieu est donc légèrement modifiée SSCF-NNI au lieu de SSCF-UNI ; Q.2150.1
++ MTP3-b au lieu de Q.2150.2 – du même type que l’on avait Q.2931 à l’accès et BISUP+
+MTP3-b ensuite.
+RNSAP s’occupe encore une fois de la gestion/supervision du lien radio, du transfert de
+la signalisation sur les canaux de contrôle communs (CCCH), du paging et l’exécution de
+la relocalisation
+DIAPO 22 :
+Là on est sur le lien entre le contrôleur de station de base et le commutateur
+téléphonique de raccordement. On est donc repassé par les couches RLC et MAC dans le
+contrôleur de station de base. On a récupéré à la fois la parole téléphonique dans le plan
+de données et la signalisation (CM et MM) dans le plan de contrôle de l’interface Uu.
+Deux grandes solutions auraient alors été envisageables : en s’inspirant de ce qui a été
+fait dans le GSM/RNIS – ie laisser la signalisation en mode paquet et faire passer la voix
+en mode circuit. Pour la SIG, pourquoi pas du LAP-D ou ce que l’on veut d’ailleurs (ATM
+ou IP…) et pour la voix soit faire un transcodage applicatif, soit la laisser au format des
+codec UMTS.
+Le choix qui a été fait est de rester sur une philosophie de réseau d’accès en mode
+paquet pour éviter par exemple que le contrôleur de station de base ait à gérer du mode
+paquet sur le lien avec ses stations de base, du mode paquet encore sur le lien avec le
+SGSN et du mode circuit avec le MSC. Dans le même ordre d’idée, lui imposer de faire en
+plus du transcodage de la voix était compliqué.
+On est donc resté à une philosophie de mode paquet et du coup si on reste avec de
+l’ATM, on réutilise de l’AAL-2 et la signalisation associée.
+Attention, encore une fois les couches CM et MM ne se terminent pas là, elles iront
+jusqu’au MSC ; cette signalisation passe par la pile de droite.
+DIAPO 23 :
+On est cette fois sur l’interface entre le contrôleur de station de base et le SGSN. On s’est
+donc débarrassé des flux de voix à envoyer dans le réseau téléphonique. On n’a plus que
+des applications sur IP. On est repassé par les couches MAC, RLC et PDCP. Le choix de
+l’AAL-2 ne s’impose plus. On peut alors penser à faire de l’AAL-5, on le voit la pile de
+protocoles standardisée a retenu de l’IP. Le choix retenu repose du GTP-U sur de l’UDP
+sur de l’IP. Le protocole GTP-U est celui du réseau de collecte des opérateurs mobiles qui
+permet de gérer les déplacements des utilisateurs. C’est donc lui qui servira encore à
+gérer la mobilité au travers de la mise en place d’un tunnel entre le SGSN et le contrôleur
+de station de base. On remarque par exemple que ce choix n’a pas été présenté sur les
+diapo précédentes car on gérait aussi de la voix et donc on ne pouvait pas se permettre
+la lourdeur de cette solution – ces tunnels permettre de fiabiliser et de faire suivre les
+données mais justement pour la voix que l’on envoie sur le RTC, on n’en veut surtout
+pas. UDP toujours car c’est le moindre mal (par exemple pour de la voix sur IP).
+On voit ici dans la proposition de l’AAL-5. C’est une suite logique si sur les autres
+interfaces on fait de l’ATM/AAL-2.
+En revanche, on constate ici qu’il n’y a pas de piles au milieu. Cela revient à dire que l’on
+ne gère pas la mise en place des connexions ATM du plan de données. On a donc
+considéré (comme pour le Frame Relay du GPRS) des connexions permanentes.
+Si l’on passe à des solutions IP (sans ATM), on remplacera l’AAL-5/ATM par du PPP par
+exemple.
+Pour la pile de gauche, là on ne transporte pas des paquets IP, c’est simplement du
+contrôle entre le SGSN et le contrôleur de station de base. Donc si on met de l’ATM/AAL-
+5 à droite, on en met à gauche aussi. Si on passe à de l’IP, pas de GTP-U ici, simplement
+TCP/IP/PPP/SDH.
+Si l’on pense par exemple au service de voix sur IP. Les opérateurs ont fait longtemps
+courir le bruit que ce service allait complètement perturber le fonctionnement du réseau
+UMTS, qu’un seul utilisateur de voix sur IP dans une cellule allait occuper toute la
+ressource radio… bref, inciter les utilisateurs à continuer à utiliser la téléphonie
+classique.
+Pour la voix sur IP, on a la voix numérisée qui passe (le plus souvent) sur une pile
+RTP/UDP/IP sur le terminal utilisateur. D’autre part, on a la signalisation qui passe par
+exemple par une pile SIP/UDP/IP. Sur le terminal utilisateur, on met tout cela au-dessus
+de PDCP. PDCP se déroulera sur le contrôleur de station de base. Les paquets IP sont
+alors relayés par un premier tunnel GTP entre le contrôleur de station de base et le SGSN
+puis par un second entre le SGSN et le GGSN. Si l’on s’intéresse par exemple à la gigue, le
+rattrapage de la gigue sera fait aux extrêmités. Donc sur les terminaux utilisateur dans le
+cas d’utilisateurs de voix sur IP (mobile ou pas) ou sur la passerelle vers le réseau
+téléphonique pour un appel vers un utilisateur fixe. Attention cette passerelle est loin…
+puisqu’on va passer par Internet d’abord.
+Néanmoins, on a un flux (de voix) qui est conversationnel et par conséquent, on en tient
+compte dans la configuration des bearers, dans les couches RLC et MAC mais aussi au
+niveau de l’AAL-2/ATM où l’on peut jouer sur les ordonnanceurs.
+Pour la voix téléphonique classique, c’est moins compliqué. La gigue sera traitée au
+niveau du MSC. Cela ne veut pas dire qu’elle n’existe pas !
+DIAPO 24 :
+Il est difficile de rassembler tous ces équipements sur un seul schéma. Dans cette diapo
+24, j’ai essayé de recenser le traitement de la voix que l’on envoie dans le réseau circuit
+et les données que l’on doit envoyer dans le réseau paquet. Ce schéma est incorrect car
+je n’ai mis qu’une pile de protocoles pour le terminal et la station de base, il manque le
+lien entre les deux. La partie haute de cette pile correspond à ce qui se passe sur le
+terminal utilisateur et la partie basse sur la station de base (à partir d’Iu-FP). On
+constate donc que la couche RLC se déroule entre le terminal et le Serving-RNC, que sur
+le drift RNC on s’arrête à la couche MAC (l’allocation des ressources sur la nouvelle
+cellule, ne sera pas prise en charge par le contrôleur de station de base de l’ancienne
+cellule). C’est la version RLC sans fiabilisation qui sera utilisée pour la voix à envoyer
+vers le réseau paquet (argh : il manque le PDCP pour la partie Data)
+DIAPO 25 :
+On va désormais s’intéresser à la structure de la nouvelle ATM-AAL2. Les AAL des
+standards ATM sont structurées en une partie basse de Segmentation et Réassemblage
+(SAR) et d’une partie haute de Convergence (Convergence Sublayer). Attention, il n’y a
+pas une SAR en tout mais une SAR par AAL (c’est d’ailleurs là que l’ancienne AAL-2
+s’était échouée définitivement). Ici la partie basse fait le contraire, c’est une sous-couche
+qui permettra de faire de la concaténation pour créer des ATM-SDU ie. des morceaux de
+48 octets.
+La partie haute a, elle-aussi, était redéfinie un peu dans la même veine que l’AAL-5
+précédentes ie. elle va proposer des services qui dépendent de l’utilisation que l’on va en
+faire. Dans l’AAL-5 la sous-couche de convergence était composée d’une partie basse
+intitulée CPCS comme Common Part Convergence Sublayer qui servait à aligner sur un
+multiple de 48 octets et à faire de la détection d’erreur. Au-dessus, on avait une souscouche
+SSCS – Service Specific Convergence Sublayer qui était à géométrie variable. De
+quasi-vide pour l’envoi de paquet IP (juste une encapsulation de type LLC-SNAP cf. cours
+interconnexion de réseau logiquement dans le cours d’Emmanuel Chaput) à une version
+plus complète pour la signalisation (cf. transparent précédent avec des mécanismes de
+reprise sur erreur et de contrôle de flux avec SSCOP).
+Ici elle va être décomposer fonctionnellement : la partie basse sert à faire de la
+segmentation et du réassemblage. Cela semble antinomique avec la couche inférieure
+qui fait de la concaténation. On retombe dans le débat : fallait-il utiliser une seule AAL ou
+plusieurs. On a choisi ici de n’en mettre qu’une. Si les messages reçus sur les canaux de
+transport sont trop gros (données à transmettre), on est bien obligé de les couper en
+morceaux.
+Au-dessus, on a un bout de protocole qui fera de la détection d’erreur et encore audessus,
+au choix, un mécanisme de retransmission.
+DIAPO 26 :
+Sur ce transparent sont illustrés les mécanismes de segmentation et de concaténation.
+Attention, on est au sein d’une seule couche de protocoles avec plusieurs sous-couches.
+Il n’y a donc pas le comportement asynchrone de deux couches protocolaires avec un
+passage par un point d’accès au service entre.
+Ici est illustré le principal intérêt (et la nouveauté) de l’AAL-2 – en particulier si on la
+compare à une solution sur IP. Attention, on ne parle pas ici de l’IP de la voix sur IP.
+Cette dernière aura une encapsulation de type RTP/UDP/IP/PDCP/RLC/MAC/PHY sur
+le terminal. La PHY-SDU récupérée sur la station de base passerait alors sur UDP/IP. Il y
+a bien deux niveaux IP.
+Sur ce schéma, on illustre donc les deux mécanismes de segmentation et de
+concaténation. L’objectif pour des PHY-SDU de toute petite taille qui contiennent de la
+voix de remplir au mieux la partie données des cellules ATM. L’inconvénient sera le délai
+engendré. S’il n’y avait pas de multiplexage, on serait obligé d’attendre d’avoir collecté
+suffisamment d’échantillons de voix (pour faire simple) pour envoyer une cellule ATM
+bien pleine ou bien si l’on ne veut pas trop attendre, envoyer des cellules ATM presque
+vides. Cela ferait perdre une grande partie de l’analyse d’économie d’overhead cité
+précédemment. Pour que cela fonctionne, on sera donc obligé d’indiquer dans les
+cellules ATM résultantes (ATM-SDU) leur composition avec un format de mini-cellule
+qui contient un champ de numéro de communication et un champ de données.
+Le problème du délai se pose encore. Doit-on attendre que la cellule soit complètement
+pleine ou pas ? L’idée qui vient alors est celle de l’utilisation de temporisateurs. Au bout
+d’un certain temps, on va envoyer la cellule, pleine ou pas.
+Les valeurs de ces temporisateurs vont dépendre du type de trafic véhiculé. Pour la voix,
+il vaut mieux prendre des valeurs faibles. Une fausse bonne idée serait de faire dépendre
+la temporisation du nombres de connexions téléphoniques se partageant la même
+connexion ATM/AAL-2 car dans ce cas, la variation du nombre de ces connexions (on
+peut en ajouter et en enlever en cours de route) induirait naturellement de la gigue.
+C’est bien sûr un joli problème de performance !
+DIAPO 27 :
+Cette dispo résume le positionnement de l’ATM/AAL-2. Comme il y a plusieurs
+variantes, on va l’attaquer par plusieurs points d’accès au service séparés. Ce sont bien
+les flux récupérés sur les canaux de transport qui vont passer par cette ATM/AAL-2. Les
+Frame Protocols sont des protocoles de niveau liaison de données et l’AAL-2 du niveau
+transport !
+DIAPO 28 :
+Encore une diapo pour essayer de résumer le fonctionnement du plan de données en
+s’abstrayant au maximum de l’UTRAN. En haut le plan de données pour la parole
+téléphonique à envoyer vers le réseau téléphonique. On remarque le passage en mode
+paquet sur l’UTRAN (RLC/MAC) et de nouveau en mode paquet entre le contrôleur de
+station de base et le 3G-MSC (ici avec de l’ATM)
+En bas, ce sont les paquets de données et l’on observe que les piles de protocoles du
+GPRS n’ont pas été modifiées sur le réseau de collecte de l’opérateur mobiles
+GTP/UDP/IP et même que cette philosophie de tunnel GTP s’est généralisée sur le lien
+entre le SGSN et le contrôleur de station de base (en GPRS, on avait là LLC qui prenait la
+relève). Notons que le soft handover gère à sa manière les envois de données lors des
+phases de handover !
+DIAPO 29 :
+La qualité de service a été un des sujets centraux de l’UMTS car il fallait être bien sûr que
+l’on arrive à maîtriser cette qualité de service différenciée. Elle est décomposée en
+plusieurs morceaux.
+Il y a d’abord le lien radio. La couche PHY a été largement repensée ; la présence d’un
+niveau intermédiaire avec des canaux de transport s’intercalant entre canaux logiques et
+canaux physiques permet d’adapter les ressources attribuées à la qualité du support. On
+peut encore recensés les efforts faits par la couche RRC pour gérer les priorités entre les
+flux au niveau MAC et une couche RLC à géométrie variable selon les besoins des flux.
+Sur l’UTRAN, ce sera cette fois-ci l’ATM AAL-2 qui permettra par des mécanismes AAL et
+par de l’ordonnancement au niveau ATM permettre de rendre un service adapté. Les FPs
+permettront encore de matérialiser plusieurs niveaux de QoS.
+Sur le réseau de collecte de l’opérateur mobile, l’UMTS a bénéficié des techniques de QoS
+du monde IP au travers de la différentiation de service (tagging des paquets) ou de
+MPLS et de l’ingénierie de trafic (cf. cours d’interconnexion d’Emmanuel Chaput).
+En revanche attention, ce qui se passe au-delà du GGSN est en dehors du périmètre du
+3GPP !
+DIAPO 30 :
+Le cours présenté jusque là a montré l’UMTS tout seul. Le déploiement d’un réseau
+mobile ne peut pas se faire du jour au lendemain. Il doit donc coexister avec les réseaux
+pré-existants. En l’occurrence, il y avait déjà les réseaux GSM/GPRS/EDGE. Il faut donc
+assurer l’intéropérabilité. C’est ce qui est présent dans la partie basse du transparent.
+Les coeurs de réseaux sont communs aux deux réseaux (et une bonne partie des
+infrastructures de réseaux d’accès aussi – exemple fibre optique). Les nouveautés qui
+sont apparus, c’est la possibilité de faire passer la signalisation dans les réseaux de
+transport sur IP (cf. remarque précédente) et c’est aussi la continuité de service au
+travers d’IMS – IP Multimedia Subsystem (à droite). C’est avec l’UMTS que les
+opérateurs ont commencé à prévoir que les utilisateurs pouvaient se raccorder au
+réseau au travers de plusieurs types de réseaux d’accès (ADSL, FTTH, Mobiles) et l’idée
+est alors qu’ils aient accès aux mêmes services quelque soit le réseau qu’ils utilisent à un
+moment donné. Je renvoie aux cours de 3A (parcours IBDIOT et TSFOC – cours de Julien
+Fasson).
+DIAPO 31 : Backup
+Sur cette diapo, j’ai montré comment la solution ATM présentée n’est pas la seule
+candidate possible, ici on change les piles de signalisation en les faisant passer sur IP.

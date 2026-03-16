@@ -6,7 +6,7 @@ const glossaryData = [
   { term: "MS", full: "Mobile Station", gen: "2G/2.5G", desc: "Le terminal de l'utilisateur (téléphone + carte SIM)." },
   { term: "BTS", full: "Base Transceiver Station", gen: "2G/2.5G", desc: "L'antenne relais qui gère la transmission radio avec le mobile." },
   { term: "BSC", full: "Base Station Controller", gen: "2G/2.5G", desc: "Contrôleur de plusieurs BTS. Gère l'allocation des ressources radio." },
-  { term: "SGSN", full: "Serving GPRS Support Node", gen: "2.5G/3G", desc: "Gère la mobilité, l'authentification et le routage des paquets dans sa zone." },
+  { term: "SGSN", full: "Serving GPRS Support Node", gen: "2.5G/3G", desc: "Gère la mobilité, l'authentification et le relais des paquets (via tunnels GTP) dans sa zone." },
   { term: "GGSN", full: "Gateway GPRS Support Node", gen: "2.5G/3G", desc: "Passerelle vers les réseaux IP externes (Internet). Attribue les adresses IP." },
   { term: "PCU", full: "Packet Control Unit", desc: "Ajout matériel au BSC pour séparer le trafic paquet du trafic circuit." },
   { term: "UE", full: "User Equipment", gen: "3G/4G", desc: "Le terminal mobile de l'utilisateur (remplace le terme MS)." },
@@ -21,7 +21,7 @@ const glossaryData = [
   { term: "HSS", full: "Home Subscriber Server", gen: "4G", desc: "Base de données centrale des abonnés (évolution du HLR)." },
   { term: "HLR", full: "Home Location Register", gen: "2G/3G", desc: "Base de données centrale contenant les profils des abonnés." },
   { term: "GTP", full: "GPRS Tunneling Protocol", desc: "Protocole utilisé pour transporter les paquets IP à travers le réseau mobile." },
-  { term: "PDCP", full: "Packet Data Convergence Protocol", desc: "Gère la compression d'en-tête (ROHC) et le chiffrement." },
+  { term: "PDCP", full: "Packet Data Convergence Protocol", desc: "Compression d'en-tête (ROHC), chiffrement et protection d'intégrité. Présent dans les plans utilisateur et contrôle." },
   { term: "RLC", full: "Radio Link Control", desc: "Gère la segmentation, le réassemblage et la retransmission (ARQ)." },
   { term: "MAC", full: "Medium Access Control", desc: "Gère l'accès au canal radio et les priorités entre les flux." },
   { term: "W-CDMA", full: "Wideband Code Division Multiple Access", gen: "3G", desc: "Technologie radio de l'UMTS utilisant des codes pour séparer les utilisateurs." },
@@ -56,7 +56,7 @@ export default function Glossary({ onNext, onPrev, nextLabel, prevLabel }: { onN
           <Book size={16} />
           Lexique Technique
         </div>
-        <h2 className="text-4xl font-bold text-slate-900 tracking-tight">Glossaire des Acronymes</h2>
+        <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-slate-900 tracking-tight">Glossaire des Acronymes</h2>
         <p className="text-lg text-slate-600 mt-4 leading-relaxed">
           Le monde des télécoms est rempli d'acronymes. Voici un guide complet pour ne plus jamais être perdu.
         </p>

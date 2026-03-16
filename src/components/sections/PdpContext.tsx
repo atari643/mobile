@@ -20,7 +20,7 @@ export default function PdpContext() {
       className="space-y-8"
     >
       <header>
-        <h2 className="text-4xl font-bold text-slate-900 tracking-tight">Mobilité & Contexte PDP</h2>
+        <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-slate-900 tracking-tight">Mobilité & Contexte PDP</h2>
         <p className="text-lg text-slate-600 mt-4 leading-relaxed">
           Pour qu'un mobile puisse envoyer ou recevoir des données, il doit d'abord s'attacher au réseau GPRS, puis activer un "Contexte PDP" (Packet Data Protocol). C'est le cœur de la session de données.
         </p>
@@ -66,7 +66,7 @@ export default function PdpContext() {
             <div className="grid grid-cols-2 gap-4 text-sm">
               <div>
                 <span className="text-slate-400 block text-xs">Type PDP</span>
-                <span className="font-mono">IPv4 / IPv6</span>
+                <span className="font-mono">IPv4 / IPv6 / X.25</span>
               </div>
               <div>
                 <span className="text-slate-400 block text-xs">Adresse PDP</span>
@@ -85,6 +85,12 @@ export default function PdpContext() {
                 <span className="font-mono text-pink-300">Point d'accès SNDCP</span>
               </div>
             </div>
+          </div>
+
+          <div className="mt-4 bg-orange-500/10 border border-orange-500/30 rounded-lg p-3">
+            <p className="text-sm text-orange-300">
+              <strong className="text-orange-400">⚠ Limitation GPRS :</strong> Un seul contexte PDP actif à la fois, et donc un seul niveau de QoS par utilisateur.
+            </p>
           </div>
         </div>
       </div>

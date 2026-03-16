@@ -10,10 +10,16 @@ interface LayerInfo {
 }
 
 const layerDetails: Record<string, LayerInfo> = {
-  'RRC': { title: 'RRC (Radio Resource Control)', desc: 'Le "cerveau" de l\'interface radio. Pilote MAC, RLC et PHY, gère les connexions et la mobilité.', color: 'text-orange-400' },
-  'PDCP': { title: 'PDCP (Packet Data Convergence Protocol)', desc: 'Compression d\'en-tête (ROHC) pour économiser la bande passante radio.', color: 'text-blue-400' },
-  'RLC': { title: 'RLC (Radio Link Control)', desc: 'Segmentation, réassemblage et fiabilisation (ARQ). Modes Transparent, Non-acquitté et Acquitté.', color: 'text-purple-400' },
+  'RRC': { title: 'RRC (Radio Resource Control)', desc: 'Le "cerveau" de l\'interface radio avec une architecture cross-layer : lié directement à PHY, MAC et RLC via des points d\'accès au service non adjacents (non conforme au modèle OSI). Cela permet un échange d\'informations plus rapide entre couches. Il pilote les bearers radio, gère la QoS et la mobilité.', color: 'text-orange-400' },
+  'RANAP': { title: 'RANAP (Radio Access Network Application Part)', desc: 'Protocole de signalisation entre l\'UTRAN et le Core Network pour la gestion des connexions et de la mobilité.', color: 'text-yellow-400' },
+  'PDCP': { title: 'PDCP (Packet Data Convergence Protocol)', desc: 'Successeur du SNDCP du GPRS. Compression séparée des en-têtes (via ROHC - Robust Header Compression, standardisé par l\'IETF) et des données des paquets IP. Se déroule entre le terminal et le RNC.', color: 'text-blue-400' },
+  'GTP-U': { title: 'GTP-U (GPRS Tunneling Protocol - User Plane)', desc: 'Encapsulation et transport des paquets utilisateur entre UTRAN et cœur de réseau paquet.', color: 'text-cyan-400' },
+  'RLC': { title: 'RLC (Radio Link Control)', desc: 'Fusion des couches RLC et LLC du GPRS. Se déroule entre le terminal et le RNC. Segmentation, concaténation, chiffrement, reprise sur erreur. Modes : Transparent, Sans acquittement et Avec acquittement.', color: 'text-purple-400' },
+  'UDP / IP': { title: 'UDP / IP', desc: 'Transport réseau pour l\'acheminement des flux utilisateur et de signalisation dans le domaine paquet.', color: 'text-slate-300' },
   'MAC': { title: 'MAC (Medium Access Control)', desc: 'Mappage des canaux logiques sur les canaux de transport. Gestion des priorités.', color: 'text-pink-400' },
+  'ATM / IP': { title: 'ATM / IP', desc: 'Transport de l\'interface Iub/Iur, historiquement ATM puis migration progressive vers IP.', color: 'text-slate-400' },
+  'PHY': { title: 'PHY (W-CDMA)', desc: 'Accès CDMA. Codage canal, entrelacement, modulation et étalement de spectre.', color: 'text-emerald-400' },
+  'L1': { title: 'L1 (Layer 1)', desc: 'Couche physique côté cœur pour l\'interface de transport.', color: 'text-emerald-300' },
   'PHY (W-CDMA)': { title: 'PHY (Couche Physique)', desc: 'Accès CDMA. Codage canal, entrelacement, modulation et étalement de spectre.', color: 'text-emerald-400' },
   'Transport (ATM / IP)': { title: 'Transport (ATM / IP)', desc: 'Couche de transport pour les interfaces Iub et Iur.', color: 'text-slate-400' },
   'MAC-b/c': { title: 'MAC-b/c', desc: 'Entités MAC pour les canaux de diffusion (broadcast) et communs, situées dans le Node B.', color: 'text-pink-400' },
@@ -22,6 +28,7 @@ const layerDetails: Record<string, LayerInfo> = {
 
 export default function UmtsProtocols({ onNext, onPrev, nextLabel, prevLabel }: { onNext?: () => void, onPrev?: () => void, nextLabel?: string, prevLabel?: string }) {
   const [activeLayer, setActiveLayer] = useState<string | null>(null);
+  const activeLayerInfo = activeLayer ? layerDetails[activeLayer] : null;
 
   const handleHover = (layer: string) => setActiveLayer(layer);
   const handleLeave = () => setActiveLayer(null);
@@ -56,7 +63,7 @@ export default function UmtsProtocols({ onNext, onPrev, nextLabel, prevLabel }: 
           <Layers size={16} />
           Protocoles 3G
         </div>
-        <h2 className="text-4xl font-bold text-slate-900 tracking-tight">Piles Protocolaires UMTS</h2>
+        <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-slate-900 tracking-tight">Piles Protocolaires UMTS</h2>
         <p className="text-lg text-slate-600 mt-4 leading-relaxed">
           L'UMTS introduit de nouveaux protocoles sur l'interface radio (Uu) pour gérer la qualité de service et la compression d'en-tête.
         </p>
@@ -70,19 +77,19 @@ export default function UmtsProtocols({ onNext, onPrev, nextLabel, prevLabel }: 
           </div>
           <div className="flex-1">
             <AnimatePresence mode="wait">
-              {activeLayer ? (
+              {activeLayerInfo ? (
                 <motion.div
-                  key={activeLayer}
+                  key={activeLayerInfo.title}
                   initial={{ opacity: 0, x: -10 }}
                   animate={{ opacity: 1, x: 0 }}
                   exit={{ opacity: 0, x: 10 }}
                   transition={{ duration: 0.2 }}
                 >
-                  <h4 className={`text-xl font-bold ${layerDetails[activeLayer].color}`}>
-                    {layerDetails[activeLayer].title}
+                  <h4 className={`text-xl font-bold ${activeLayerInfo.color}`}>
+                    {activeLayerInfo.title}
                   </h4>
                   <p className="text-slate-300 mt-1 leading-relaxed">
-                    {layerDetails[activeLayer].desc}
+                    {activeLayerInfo.desc}
                   </p>
                 </motion.div>
               ) : (
@@ -229,10 +236,16 @@ export default function UmtsProtocols({ onNext, onPrev, nextLabel, prevLabel }: 
             Pour relier le Node B au RNC (Iub), il a fallu choisir une technologie capable de gérer la voix et les données avec une QoS stricte.
           </p>
           <div className="bg-slate-50 p-4 rounded-xl border border-slate-200">
-            <h4 className="font-bold text-slate-800 mb-2">Le choix initial : ATM (AAL2)</h4>
-            <p className="text-sm text-slate-600">
-              L'ATM a été choisi dans les premières versions (R99) car il rassurait les opérateurs sur la gestion de la voix.
+            <h4 className="font-bold text-slate-800 mb-2">Le choix initial : ATM (AAL-2)</h4>
+            <p className="text-sm text-slate-600 mb-3">
+              L'ATM a été choisi dans les premières versions (R99). L'AAL-2 a été redéfinie spécialement pour l'UMTS avec deux fonctions clés :
             </p>
+            <ul className="text-sm text-slate-600 space-y-1">
+              <li>• <strong>Multiplexage :</strong> Plusieurs flux (voix, données) sur la même connexion ATM-AAL2</li>
+              <li>• <strong>Concaténation :</strong> Remplissage optimal des cellules ATM avec des échantillons de voix de plusieurs communications</li>
+              <li>• <strong>Frame Protocols :</strong> Un protocole FP par type de canal de transport (RACH, DSCH, PCH…)</li>
+              <li>• <strong>Signalisation :</strong> Nouveau protocole Q.2630.1 pour gérer les connexions AAL-2 avec multiplexage</li>
+            </ul>
           </div>
         </div>
 

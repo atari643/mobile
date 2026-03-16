@@ -34,7 +34,7 @@ export default function PerformanceCharts({ onNext, onPrev, nextLabel, prevLabel
           <Activity size={16} />
           Performances
         </div>
-        <h2 className="text-4xl font-bold text-slate-900 tracking-tight">Comparaison des Performances</h2>
+        <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-slate-900 tracking-tight">Comparaison des Performances</h2>
         <p className="text-lg text-slate-600 mt-4 leading-relaxed">
           Visualisez l'évolution exponentielle des capacités des réseaux mobiles au fil des générations.
         </p>

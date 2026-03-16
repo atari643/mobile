@@ -58,7 +58,7 @@ export default function CallFlows({ onNext, onPrev, nextLabel, prevLabel }: { on
           <Play size={16} />
           Flux de Signalisation
         </div>
-        <h2 className="text-4xl font-bold text-slate-900 tracking-tight">Diagrammes de Flux Interactifs</h2>
+        <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-slate-900 tracking-tight">Diagrammes de Flux Interactifs</h2>
         <p className="text-lg text-slate-600 mt-4 leading-relaxed">
           Comprenez comment les différents éléments du réseau communiquent entre eux lors des procédures critiques.
         </p>

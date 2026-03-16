@@ -20,7 +20,7 @@ export default function RadioInterface() {
       className="space-y-8"
     >
       <header>
-        <h2 className="text-4xl font-bold text-slate-900 tracking-tight">Interface Radio & Couches MAC/RLC</h2>
+        <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-slate-900 tracking-tight">Interface Radio & Couches MAC/RLC</h2>
         <p className="text-lg text-slate-600 mt-4 leading-relaxed">
           C'est ici que se trouve la véritable complexité du GPRS ("On rentre dans le dur !"). L'allocation dynamique des ressources radio et le partage des canaux physiques nécessitent des mécanismes sophistiqués au niveau des couches MAC et RLC.
         </p>
@@ -225,6 +225,36 @@ export default function RadioInterface() {
               <li><strong>USF = 0 :</strong> Réservé pour le polling (demande explicite d'acquittement par le réseau).</li>
             </ul>
           </div>
+        </div>
+      </div>
+
+      <div className="bg-white p-8 rounded-2xl border border-slate-200 shadow-sm">
+        <h3 className="text-2xl font-bold text-slate-900 mb-4 flex items-center gap-2">
+          <Zap className="text-orange-500" />
+          EDGE (2.75G) — Améliorations clés
+        </h3>
+        <p className="text-sm text-slate-600 mb-6 leading-relaxed">
+          EDGE (Enhanced Data Rates for GSM Evolution) apporte des améliorations ciblées sur la couche radio sans changer l'architecture réseau. Le PDF souligne deux innovations majeures :
+        </p>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div className="bg-orange-50 p-5 rounded-xl border border-orange-100">
+            <h4 className="font-bold text-orange-900 mb-2">Modulation & Codage Adaptatifs</h4>
+            <p className="text-sm text-orange-800">
+              Contrairement au GPRS où le taux de codage est fixé à l'échelle d'un flux, EDGE permet de faire évoluer <strong>dynamiquement</strong> le couple (modulation, codage) <strong>à l'échelle des trames</strong>. La station de base calcule en permanence la qualité de réception et ajuste ce couple en conséquence. Cela offre un meilleur débit avec moins de prudence dans les marges.
+            </p>
+          </div>
+
+          <div className="bg-purple-50 p-5 rounded-xl border border-purple-100">
+            <h4 className="font-bold text-purple-900 mb-2">Mini-blocs & Renumérotation</h4>
+            <p className="text-sm text-purple-800">
+              Le changement de modulation/codage pose un problème : le nombre de blocs nécessaires pour retransmettre une RLC-PDU change. EDGE résout cela en découpant les blocs en <strong>mini-blocs</strong> numérotés individuellement. Ainsi, un changement de couple codage/modulation modifie le nombre de blocs, mais la numérotation des mini-blocs reste cohérente.
+            </p>
+          </div>
+        </div>
+
+        <div className="mt-4 bg-slate-50 p-4 rounded-lg border border-slate-200 text-sm text-slate-600">
+          <strong>⚠ Important :</strong> Les terminaux EDGE doivent être spécifiquement modifiés pour supporter ces nouvelles modulations. Un terminal GPRS classique ne peut pas utiliser EDGE.
         </div>
       </div>
     </motion.div>

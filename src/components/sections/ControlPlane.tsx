@@ -57,7 +57,7 @@ export default function ControlPlane({ onNext, onPrev, nextLabel, prevLabel }: {
           <Shield size={16} />
           Signalisation
         </div>
-        <h2 className="text-4xl font-bold text-slate-900 tracking-tight">Plan de Contrôle (Control Plane)</h2>
+        <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-slate-900 tracking-tight">Plan de Contrôle (Control Plane)</h2>
         <p className="text-lg text-slate-600 mt-4 leading-relaxed">
           Le plan de contrôle gère la signalisation nécessaire pour établir, maintenir et libérer les connexions de données. Il est séparé du plan utilisateur (User Plane) qui transporte les données réelles.
         </p>
@@ -100,31 +100,24 @@ export default function ControlPlane({ onNext, onPrev, nextLabel, prevLabel }: {
         <div className="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm hover:shadow-md transition-shadow">
           <h3 className="text-xl font-bold text-slate-900 mb-4 flex items-center gap-2">
             <Settings className="text-blue-600" />
-            SM (Session Management)
+            SM (Short Message)
           </h3>
           <p className="text-sm text-slate-600 mb-4">
-            SM gère l'établissement, la modification et la libération des contextes PDP (Packet Data Protocol) pour permettre le transfert de données.
+            La couche CM du GSM a disparu car il ne s'agit plus de communications téléphoniques. Seuls les SMS subsistent, gérés par SM. La gestion des contextes PDP (sessions de données) est assurée par GMM.
           </p>
           <ul className="space-y-3 text-sm text-slate-600">
             <li className="flex items-start gap-2">
               <div className="w-1.5 h-1.5 rounded-full bg-blue-500 mt-1.5 shrink-0" />
               <div>
-                <strong className="text-slate-800 block">PDP Context Activation</strong>
-                Demande d'une adresse IP et établissement d'un tunnel GTP entre SGSN et GGSN.
+                <strong className="text-slate-800 block">Envoi de SMS</strong>
+                SM prend en charge l'envoi et la réception de messages courts (SMS), seule fonction conservée de la couche CM du GSM.
               </div>
             </li>
             <li className="flex items-start gap-2">
               <div className="w-1.5 h-1.5 rounded-full bg-blue-500 mt-1.5 shrink-0" />
               <div>
-                <strong className="text-slate-800 block">PDP Context Modification</strong>
-                Changement des paramètres de la session, comme la Qualité de Service (QoS).
-              </div>
-            </li>
-            <li className="flex items-start gap-2">
-              <div className="w-1.5 h-1.5 rounded-full bg-blue-500 mt-1.5 shrink-0" />
-              <div>
-                <strong className="text-slate-800 block">PDP Context Deactivation</strong>
-                Fermeture de la session de données et libération de l'adresse IP et des ressources.
+                <strong className="text-slate-800 block">Héritage du GSM</strong>
+                En GSM, la couche CM gérait les appels (CC), les SMS (SM) et les services supplémentaires (SS). En GPRS, seul SM persiste.
               </div>
             </li>
           </ul>

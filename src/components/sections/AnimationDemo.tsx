@@ -57,7 +57,7 @@ export default function AnimationDemo() {
     >
       <header className="flex justify-between items-end">
         <div>
-          <h2 className="text-4xl font-bold text-slate-900 tracking-tight">Démonstration Animée</h2>
+          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-slate-900 tracking-tight">Démonstration Animée</h2>
           <p className="text-lg text-slate-600 mt-4 leading-relaxed">
             Visualisation du trajet d'un paquet IP (Ping) depuis le terminal mobile vers Internet.
           </p>

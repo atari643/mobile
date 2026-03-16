@@ -37,7 +37,7 @@ export default function NetworkSecurity({ onNext, onPrev, nextLabel, prevLabel }
           <Shield size={16} />
           Sécurité
         </div>
-        <h2 className="text-4xl font-bold text-slate-900 tracking-tight">Sécurité des Réseaux Mobiles</h2>
+        <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-slate-900 tracking-tight">Sécurité des Réseaux Mobiles</h2>
         <p className="text-lg text-slate-600 mt-4 leading-relaxed">
           La sécurité a évolué de manière spectaculaire. D'un système 2G vulnérable aux "IMSI Catchers", nous sommes passés à une architecture 4G/5G ultra-sécurisée basée sur des clés cryptographiques robustes.
         </p>

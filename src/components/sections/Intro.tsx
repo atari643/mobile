@@ -17,11 +17,11 @@ export default function Intro({ onNext }: { onNext?: () => void }) {
           <GraduationCap size={18} />
           Plateforme d'Apprentissage Interactive
         </div>
-        <h1 className="text-5xl font-black text-slate-900 tracking-tight leading-tight">
-          Maîtrisez l'Architecture des <br />
+        <h1 className="text-3xl sm:text-4xl lg:text-5xl font-black text-slate-900 tracking-tight leading-tight">
+          Maîtrisez l'Architecture des{' '}
           <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-600 to-blue-600">Réseaux Mobiles</span>
         </h1>
-        <p className="text-xl text-slate-600 max-w-3xl mx-auto leading-relaxed">
+        <p className="text-base sm:text-lg lg:text-xl text-slate-600 max-w-3xl mx-auto leading-relaxed">
           Une exploration complète et visuelle du GPRS (2.5G), de l'UMTS (3G) et du LTE (4G). 
           Apprenez comment les données circulent de votre mobile jusqu'à Internet.
         </p>
@@ -112,7 +112,7 @@ export default function Intro({ onNext }: { onNext?: () => void }) {
         </div>
       </div>
 
-      <div className="bg-slate-900 rounded-[40px] p-10 lg:p-16 text-white relative overflow-hidden">
+      <div className="bg-slate-900 rounded-2xl sm:rounded-[40px] p-6 sm:p-10 lg:p-16 text-white relative overflow-hidden">
         <div className="absolute top-0 right-0 w-96 h-96 bg-emerald-500/10 blur-[120px] rounded-full -mr-48 -mt-48"></div>
         <div className="absolute bottom-0 left-0 w-96 h-96 bg-blue-500/10 blur-[120px] rounded-full -ml-48 -mb-48"></div>
         

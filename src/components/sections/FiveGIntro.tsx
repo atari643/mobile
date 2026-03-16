@@ -43,7 +43,7 @@ export default function FiveGIntro({ onNext, onPrev, nextLabel, prevLabel }: { o
           <Zap size={16} />
           Le Futur : 5G NR
         </div>
-        <h2 className="text-4xl font-bold text-slate-900 tracking-tight">L'Évolution vers la 5G (New Radio)</h2>
+        <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-slate-900 tracking-tight">L'Évolution vers la 5G (New Radio)</h2>
         <p className="text-lg text-slate-600 mt-4 leading-relaxed">
           La 5G n'est pas seulement une version plus rapide de la 4G. C'est une refonte complète de l'architecture réseau pour supporter des millions d'objets connectés, une latence ultra-faible et des débits multi-gigabits.
         </p>

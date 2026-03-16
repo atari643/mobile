@@ -24,14 +24,14 @@ export default function UmtsArchitecture() {
           <span className="flex h-2 w-2 rounded-full bg-indigo-500"></span>
           Architecture 3G
         </div>
-        <h2 className="text-4xl font-bold text-slate-900 tracking-tight">Architecture Réseau UMTS</h2>
+        <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-slate-900 tracking-tight">Architecture Réseau UMTS</h2>
         <p className="text-lg text-slate-600 mt-4 leading-relaxed">
           L'UMTS conserve le cœur de réseau (Core Network) du GPRS (avec quelques évolutions) mais remplace entièrement le réseau d'accès radio par l'<strong className="text-indigo-600">UTRAN (UMTS Terrestrial Radio Access Network)</strong>.
         </p>
       </header>
 
       {/* Architecture Diagram */}
-      <div className="bg-slate-50 p-8 rounded-3xl border border-slate-200 shadow-sm overflow-hidden relative">
+      <div className="bg-slate-50 p-4 sm:p-8 rounded-3xl border border-slate-200 shadow-sm overflow-hidden relative">
         {/* Info Panel */}
         <div className="mb-6 bg-indigo-50 border border-indigo-100 rounded-2xl p-4 flex items-start gap-4 min-h-[100px]">
           <div className="mt-1 text-indigo-600 bg-indigo-100 p-2 rounded-lg"><Info size={24} /></div>
@@ -50,7 +50,8 @@ export default function UmtsArchitecture() {
           </div>
         </div>
 
-        <div className="relative w-full aspect-[16/9] min-h-[500px] max-w-5xl mx-auto bg-white rounded-2xl border border-slate-200 shadow-inner p-4">
+        <div className="overflow-x-auto">
+        <div className="relative w-full aspect-[16/9] min-h-[500px] min-w-[700px] max-w-5xl mx-auto bg-white rounded-2xl border border-slate-200 shadow-inner p-4">
           
           {/* Background Areas */}
           {/* UTRAN Area */}
@@ -82,39 +83,39 @@ export default function UmtsArchitecture() {
           </div>
 
           {/* SVG Lines */}
-          <svg className="absolute inset-0 w-full h-full pointer-events-none" style={{ zIndex: 10 }}>
+          <svg className="absolute inset-0 w-full h-full pointer-events-none" style={{ zIndex: 10 }} viewBox="0 0 100 100" preserveAspectRatio="none">
             <defs>
-              <marker id="arrowhead-umts" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
-                <polygon points="0 0, 10 3.5, 0 7" fill="#818cf8" />
+              <marker id="arrowhead-umts" markerUnits="userSpaceOnUse" markerWidth="5" markerHeight="3.5" refX="4.6" refY="1.75" orient="auto">
+                <polygon points="0 0, 5 1.75, 0 3.5" fill="#818cf8" />
               </marker>
-              <marker id="arrowhead-cs" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
-                <polygon points="0 0, 10 3.5, 0 7" fill="#94a3b8" />
+              <marker id="arrowhead-cs" markerUnits="userSpaceOnUse" markerWidth="5" markerHeight="3.5" refX="4.6" refY="1.75" orient="auto">
+                <polygon points="0 0, 5 1.75, 0 3.5" fill="#94a3b8" />
               </marker>
-              <marker id="arrowhead-ps" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
-                <polygon points="0 0, 10 3.5, 0 7" fill="#34d399" />
+              <marker id="arrowhead-ps" markerUnits="userSpaceOnUse" markerWidth="5" markerHeight="3.5" refX="4.6" refY="1.75" orient="auto">
+                <polygon points="0 0, 5 1.75, 0 3.5" fill="#34d399" />
               </marker>
             </defs>
 
             {/* Uu */}
-            <path d="M 13% 48% L 22% 35%" stroke="#818cf8" strokeWidth="3" strokeDasharray="6 6" fill="none" markerEnd="url(#arrowhead-umts)" />
-            <path d="M 13% 52% L 22% 65%" stroke="#818cf8" strokeWidth="3" strokeDasharray="6 6" fill="none" markerEnd="url(#arrowhead-umts)" />
+            <path d="M 13 48 L 22 35" stroke="#818cf8" strokeWidth="3" strokeDasharray="6 6" fill="none" markerEnd="url(#arrowhead-umts)" />
+            <path d="M 13 52 L 22 65" stroke="#818cf8" strokeWidth="3" strokeDasharray="6 6" fill="none" markerEnd="url(#arrowhead-umts)" />
             
             {/* Iub */}
-            <path d="M 28% 35% L 39% 48%" stroke="#818cf8" strokeWidth="3" fill="none" markerEnd="url(#arrowhead-umts)" />
-            <path d="M 28% 65% L 39% 52%" stroke="#818cf8" strokeWidth="3" fill="none" markerEnd="url(#arrowhead-umts)" />
+            <path d="M 28 35 L 39 48" stroke="#818cf8" strokeWidth="3" fill="none" markerEnd="url(#arrowhead-umts)" />
+            <path d="M 28 65 L 39 52" stroke="#818cf8" strokeWidth="3" fill="none" markerEnd="url(#arrowhead-umts)" />
 
             {/* Iu-CS */}
-            <path d="M 46% 48% L 66% 35%" stroke="#94a3b8" strokeWidth="3" fill="none" markerEnd="url(#arrowhead-cs)" />
+            <path d="M 46 48 L 66 35" stroke="#94a3b8" strokeWidth="3" fill="none" markerEnd="url(#arrowhead-cs)" />
             
             {/* Iu-PS */}
-            <path d="M 46% 52% L 66% 65%" stroke="#34d399" strokeWidth="3" fill="none" markerEnd="url(#arrowhead-ps)" />
+            <path d="M 46 52 L 66 65" stroke="#34d399" strokeWidth="3" fill="none" markerEnd="url(#arrowhead-ps)" />
 
             {/* Gn */}
-            <path d="M 74% 70% L 86% 70%" stroke="#34d399" strokeWidth="3" fill="none" markerEnd="url(#arrowhead-ps)" />
+            <path d="M 74 70 L 86 70" stroke="#34d399" strokeWidth="3" fill="none" markerEnd="url(#arrowhead-ps)" />
 
             {/* Gr / D (HLR lines) */}
-            <path d="M 72% 35% L 78% 48%" stroke="#a855f7" strokeWidth="2" strokeDasharray="4 4" fill="none" />
-            <path d="M 72% 65% L 78% 52%" stroke="#a855f7" strokeWidth="2" strokeDasharray="4 4" fill="none" />
+            <path d="M 72 35 L 78 48" stroke="#a855f7" strokeWidth="2" strokeDasharray="4 4" fill="none" />
+            <path d="M 72 65 L 78 52" stroke="#a855f7" strokeWidth="2" strokeDasharray="4 4" fill="none" />
           </svg>
 
           {/* Nodes */}
@@ -169,7 +170,7 @@ export default function UmtsArchitecture() {
           {/* SGSN */}
           <div 
             className="absolute top-[70%] left-[70%] -translate-x-1/2 -translate-y-1/2 w-24 h-16 bg-emerald-100 border-2 border-emerald-400 rounded-xl flex items-center justify-center hover:bg-emerald-200 transition-transform hover:scale-105 cursor-help z-20 shadow-lg"
-            onMouseEnter={() => handleHover('3G-SGSN', 'Serving GPRS Support Node. Gère la mobilité paquet et le routage vers le RNC.')}
+            onMouseEnter={() => handleHover('3G-SGSN', 'Serving GPRS Support Node. Gère la mobilité paquet. Relais des paquets vers le RNC/GGSN via les tunnels GTP (ne route pas).')}
             onMouseLeave={handleLeave}
           >
             <span className="font-bold text-emerald-800">3G-SGSN</span>
@@ -225,10 +226,11 @@ export default function UmtsArchitecture() {
           >Gn</div>
 
         </div>
+        </div>
       </div>
 
       {/* Structural Comparison GPRS vs UMTS */}
-      <div className="bg-slate-900 p-8 rounded-2xl shadow-xl text-white">
+      <div className="bg-slate-900 p-4 sm:p-8 rounded-2xl shadow-xl text-white">
         <h3 className="text-2xl font-bold text-emerald-400 mb-8 flex items-center gap-3 border-b border-slate-800 pb-4">
           <GitCompare className="text-emerald-500" size={28} />
           Comparaison Structurelle : Accès Radio (RAN)
@@ -309,8 +311,8 @@ export default function UmtsArchitecture() {
             
             <div className="mt-8 text-sm text-indigo-200 space-y-3 bg-indigo-950/50 p-4 rounded-lg border border-indigo-500/20">
               <p className="flex items-start gap-2"><span className="text-pink-400 mt-0.5">▪</span> <span><strong className="text-pink-400">Nouveauté : Interface Iur</strong> entre les RNC.</span></p>
-              <p className="flex items-start gap-2"><span className="text-indigo-400 mt-0.5">▪</span> <span>Permet le <strong>Soft Handover</strong> (Macro-diversité).</span></p>
-              <p className="flex items-start gap-2"><span className="text-indigo-400 mt-0.5">▪</span> <span>Le Node B est plus intelligent (contrôle de puissance rapide).</span></p>
+              <p className="flex items-start gap-2"><span className="text-indigo-400 mt-0.5">▪</span> <span>Permet le <strong>Soft Handover</strong> (Macro-diversité) : le <strong>Serving RNC</strong> reste passerelle vers le CN, le <strong>Drift RNC</strong> relaye les données via l'interface Iur.</span></p>
+              <p className="flex items-start gap-2"><span className="text-indigo-400 mt-0.5">▪</span> <span>Le Node B gère le contrôle de puissance rapide. On conserve le meilleur des deux signaux reçus.</span></p>
             </div>
           </div>
         </div>

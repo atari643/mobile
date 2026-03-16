@@ -8,7 +8,8 @@
     "build": "vite build",
     "preview": "vite preview",
     "clean": "rm -rf dist",
-    "lint": "tsc --noEmit"
+    "lint": "tsc --noEmit",
+    "deploy:gcp": "for %I in (\"C:\\Users\\quent\\AppData\\Local\\Google\\Cloud SDK\\google-cloud-sdk\\bin\\gcloud.cmd\") do @(%~I builds submit --tag gcr.io/traiderai/mon-app && %~I run deploy mon-app --image gcr.io/traiderai/mon-app --platform managed --region europe-west3 --allow-unauthenticated)"
   },
   "dependencies": {
     "@google/genai": "^1.29.0",

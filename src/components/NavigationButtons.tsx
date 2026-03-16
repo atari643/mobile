@@ -10,26 +10,26 @@ interface NavigationButtonsProps {
 
 export default function NavigationButtons({ onNext, onPrev, nextLabel, prevLabel }: NavigationButtonsProps) {
   return (
-    <div className="flex items-center justify-between mt-12 pt-8 border-t border-slate-200">
+    <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-between mt-8 sm:mt-12 pt-6 sm:pt-8 border-t border-slate-200 gap-3">
       {onPrev ? (
         <button
           onClick={onPrev}
-          className="flex items-center gap-2 px-6 py-3 rounded-xl border border-slate-200 text-slate-600 font-bold hover:bg-slate-50 transition-all group"
+          className="flex items-center justify-center gap-2 px-4 py-2.5 sm:px-6 sm:py-3 rounded-xl border border-slate-200 text-slate-600 font-bold hover:bg-slate-50 transition-all group text-sm sm:text-base"
         >
-          <ChevronLeft className="group-hover:-translate-x-1 transition-transform" size={20} />
-          {prevLabel || "Précédent"}
+          <ChevronLeft className="group-hover:-translate-x-1 transition-transform shrink-0" size={20} />
+          <span className="truncate">{prevLabel || "Précédent"}</span>
         </button>
-      ) : <div />}
+      ) : <div className="hidden sm:block" />}
 
       {onNext ? (
         <button
           onClick={onNext}
-          className="flex items-center gap-2 px-6 py-3 rounded-xl bg-slate-900 text-white font-bold hover:bg-slate-800 transition-all shadow-md hover:shadow-lg group"
+          className="flex items-center justify-center gap-2 px-4 py-2.5 sm:px-6 sm:py-3 rounded-xl bg-slate-900 text-white font-bold hover:bg-slate-800 transition-all shadow-md hover:shadow-lg group text-sm sm:text-base"
         >
-          {nextLabel || "Suivant"}
-          <ChevronRight className="group-hover:translate-x-1 transition-transform" size={20} />
+          <span className="truncate">{nextLabel || "Suivant"}</span>
+          <ChevronRight className="group-hover:translate-x-1 transition-transform shrink-0" size={20} />
         </button>
-      ) : <div />}
+      ) : <div className="hidden sm:block" />}
     </div>
   );
 }

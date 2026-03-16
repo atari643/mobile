@@ -17,7 +17,7 @@ export default function LtePhyMac() {
         </div>
         <h2 className="text-3xl font-bold text-slate-900 tracking-tight">Couche Physique, MAC et QoS</h2>
         <p className="text-slate-600 mt-4 leading-relaxed max-w-3xl">
-          Le LTE abandonne le CDMA (utilisé en 3G) au profit de l'OFDMA, offrant une meilleure efficacité spectrale et une bande passante flexible. La gestion de la QoS et de la correction d'erreurs (HARQ/ARQ) est également repensée pour minimiser la latence.
+          Le LTE abandonne le CDMA (utilisé en 3G) au profit de l'OFDMA, offrant une meilleure efficacité spectrale et une bande passante flexible. L'ordonnancement est <strong>cross-layer</strong> : il prend en compte la QoS des flux, la qualité du support radio et l'équité entre utilisateurs. La correction d'erreurs (HARQ/ARQ) est repensée pour minimiser la latence.
         </p>
       </header>
 
@@ -60,7 +60,7 @@ export default function LtePhyMac() {
             <div className="mt-4 text-sm text-slate-300 space-y-3 bg-slate-900/50 p-4 rounded-lg">
               <p className="flex items-start gap-2"><span className="text-blue-400 mt-0.5">▪</span> <strong>Orthogonal Frequency Division Multiple Access.</strong></p>
               <p className="flex items-start gap-2"><span className="text-blue-400 mt-0.5">▪</span> Le spectre est divisé en de multiples sous-porteuses orthogonales.</p>
-              <p className="flex items-start gap-2"><span className="text-blue-400 mt-0.5">▪</span> L'ordonnancement est sélectif en fréquence, allouant les meilleures sous-porteuses à chaque utilisateur (représenté par les couleurs).</p>
+              <p className="flex items-start gap-2"><span className="text-blue-400 mt-0.5">▪</span> L'ordonnancement cross-layer est sélectif en fréquence : il alloue les meilleures sous-porteuses en tenant compte de la QoS, de la qualité radio et de l'équité.</p>
               <p className="flex items-start gap-2"><span className="text-rose-400 mt-0.5">⚠</span> Inconvénient : Fort PAPR (Peak-to-Average Power Ratio), nécessitant des amplificateurs linéaires coûteux (gérable pour l'eNodeB).</p>
             </div>
           </div>
@@ -97,7 +97,8 @@ export default function LtePhyMac() {
             <div className="mt-4 text-sm text-slate-300 space-y-3 bg-slate-900/50 p-4 rounded-lg">
               <p className="flex items-start gap-2"><span className="text-emerald-400 mt-0.5">▪</span> <strong>Single Carrier - Frequency Division Multiple Access.</strong></p>
               <p className="flex items-start gap-2"><span className="text-emerald-400 mt-0.5">▪</span> Similaire à l'OFDMA mais avec un pré-codage (DFT) qui étale le signal sur toutes les sous-porteuses allouées.</p>
-              <p className="flex items-start gap-2"><span className="text-emerald-400 mt-0.5">▪</span> Le signal apparaît comme une porteuse unique ("Single Carrier").</p>
+              <p className="flex items-start gap-2"><span className="text-emerald-400 mt-0.5">▪</span> L'ordonnancement est également <strong>cross-layer</strong>, mais l'allocation des ressources est faite à la granularité de l'utilisateur.</p>
+              <p className="flex items-start gap-2"><span className="text-emerald-400 mt-0.5">▪</span> <strong>Allocation à la granularité de l'utilisateur :</strong> le réseau alloue des ressources à l'UE, qui déroule ensuite un algorithme pour décider quels flux servir (solution plus simple retenue par le standard).</p>
               <p className="flex items-start gap-2"><span className="text-emerald-400 mt-0.5">✓</span> Avantage majeur : Faible PAPR, ce qui permet d'utiliser des amplificateurs moins coûteux et économise la batterie du terminal (UE).</p>
             </div>
           </div>
@@ -164,6 +165,7 @@ export default function LtePhyMac() {
                 <li>• <strong>Fiable :</strong> Fenêtre glissante classique (Sliding Window).</li>
                 <li>• <strong>Rôle :</strong> Retransmet les paquets (RLC SDUs) que le HARQ n'a pas réussi à corriger.</li>
                 <li>• <strong>Interaction :</strong> L'ARQ utilise les informations du HARQ (état de transmission) pour déclencher ses propres retransmissions plus intelligemment.</li>
+                <li>• <strong>Avantage LTE :</strong> Grâce à la fusion BTS+RNC dans l'eNodeB, les retransmissions RLC sont plus rapides qu'en 3G (plus besoin de traverser l'interface Iub).</li>
               </ul>
             </div>
           </div>

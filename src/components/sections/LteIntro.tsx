@@ -15,7 +15,7 @@ export default function LteIntro() {
           <span className="flex h-2 w-2 rounded-full bg-rose-500"></span>
           Évolution 4G
         </div>
-        <h2 className="text-4xl font-bold text-slate-900 tracking-tight">Introduction au LTE (4G)</h2>
+        <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-slate-900 tracking-tight">Introduction au LTE (4G)</h2>
         <p className="text-lg text-slate-600 mt-4 leading-relaxed">
           Le <strong className="text-rose-600">LTE (Long Term Evolution)</strong> marque une rupture majeure. Face à la saturation des réseaux 3G+ et à l'explosion du trafic de données, le 3GPP a repensé l'architecture pour offrir des débits massifs, une latence réduite et une architecture simplifiée "Tout IP".
         </p>

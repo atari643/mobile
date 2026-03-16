@@ -33,7 +33,7 @@ export default function IotFocus({ onNext, onPrev, nextLabel, prevLabel }: { onN
           <Cpu size={16} />
           Internet des Objets
         </div>
-        <h2 className="text-4xl font-bold text-slate-900 tracking-tight">Focus sur l'IoT Cellulaire</h2>
+        <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-slate-900 tracking-tight">Focus sur l'IoT Cellulaire</h2>
         <p className="text-lg text-slate-600 mt-4 leading-relaxed">
           Le réseau des objets n'a pas les mêmes besoins que celui des humains. Alors que nous cherchons le débit, les objets cherchent l'autonomie et la pénétration dans les bâtiments.
         </p>

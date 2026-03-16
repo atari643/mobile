@@ -12,14 +12,14 @@ export default function GsmVsGprs({ onNext, onPrev, nextLabel, prevLabel }: { on
       className="space-y-8"
     >
       <header>
-        <h2 className="text-4xl font-bold text-slate-900 tracking-tight">Évolution : GSM vers GPRS</h2>
+        <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-slate-900 tracking-tight">Évolution : GSM vers GPRS</h2>
         <p className="text-lg text-slate-600 mt-4 leading-relaxed">
           Comprendre le GPRS nécessite de saisir ses différences fondamentales avec le GSM, notamment au niveau de l'allocation des ressources radio et de la technique de commutation.
         </p>
       </header>
 
-      <div className="overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm">
-        <table className="w-full text-left text-sm">
+      <div className="overflow-x-auto rounded-2xl border border-slate-200 bg-white shadow-sm">
+        <table className="w-full text-left text-sm min-w-[600px]">
           <thead className="bg-slate-50 border-b border-slate-200">
             <tr>
               <th className="p-4 font-semibold text-slate-900">Caractéristique</th>
@@ -31,7 +31,7 @@ export default function GsmVsGprs({ onNext, onPrev, nextLabel, prevLabel }: { on
             <tr>
               <td className="p-4 font-medium text-slate-900">Technique de commutation</td>
               <td className="p-4 text-slate-600 border-l border-slate-200">Commutation de circuits (Circuit Switched)</td>
-              <td className="p-4 text-emerald-800 border-l border-slate-200 bg-emerald-50/30">Commutation de paquets (Packet Switched)</td>
+              <td className="p-4 text-emerald-800 border-l border-slate-200 bg-emerald-50/30">Commutation de paquets (Packet Switched) et de circuits (Circuit Switched)</td>
             </tr>
             <tr>
               <td className="p-4 font-medium text-slate-900">Allocation des ressources</td>
@@ -62,18 +62,18 @@ export default function GsmVsGprs({ onNext, onPrev, nextLabel, prevLabel }: { on
         </table>
       </div>
 
-      <div className="mt-8 bg-slate-900 rounded-2xl p-8 text-white relative overflow-hidden">
+      <div className="mt-8 bg-slate-900 rounded-2xl p-4 sm:p-8 text-white relative overflow-hidden">
         <div className="absolute top-0 right-0 w-64 h-64 bg-emerald-500 rounded-full mix-blend-multiply filter blur-3xl opacity-20 translate-x-1/2 -translate-y-1/2"></div>
-        <h3 className="text-xl font-bold mb-4 flex items-center gap-2">
+        <h3 className="text-base sm:text-xl font-bold mb-4 flex items-center gap-2 flex-wrap">
           <span className="text-emerald-400">Concept Clé :</span> L'agrégation de Time Slots
         </h3>
         <p className="text-slate-300 leading-relaxed mb-6">
           En GSM, une trame TDMA (Time Division Multiple Access) est divisée en 8 Time Slots (TS). Un appel vocal occupe 1 TS. Le GPRS permet à un mobile d'utiliser plusieurs TS simultanément pour augmenter son débit.
         </p>
         
-        <div className="flex flex-col gap-4">
-          <div className="flex items-center gap-4">
-            <span className="w-16 text-sm font-mono text-slate-400">GSM</span>
+        <div className="flex flex-col gap-4 overflow-x-auto">
+          <div className="flex items-center gap-2 sm:gap-4 min-w-[400px]">
+            <span className="w-12 sm:w-16 text-xs sm:text-sm font-mono text-slate-400 shrink-0">GSM</span>
             <div className="flex-1 flex gap-1">
               {[...Array(8)].map((_, i) => (
                 <div key={`gsm-${i}`} className={`h-10 flex-1 rounded ${i === 2 ? 'bg-blue-500' : 'bg-slate-700'} flex items-center justify-center text-xs font-mono`}>
@@ -83,8 +83,8 @@ export default function GsmVsGprs({ onNext, onPrev, nextLabel, prevLabel }: { on
             </div>
           </div>
           
-          <div className="flex items-center gap-4">
-            <span className="w-16 text-sm font-mono text-slate-400">GPRS</span>
+          <div className="flex items-center gap-2 sm:gap-4 min-w-[400px]">
+            <span className="w-12 sm:w-16 text-xs sm:text-sm font-mono text-slate-400 shrink-0">GPRS</span>
             <div className="flex-1 flex gap-1">
               {[...Array(8)].map((_, i) => (
                 <div key={`gprs-${i}`} className={`h-10 flex-1 rounded ${[1, 2, 3, 4].includes(i) ? 'bg-emerald-500' : 'bg-slate-700'} flex items-center justify-center text-xs font-mono`}>
